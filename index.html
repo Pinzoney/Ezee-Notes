@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Generator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+        .hover-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hover-menu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 15);
+            z-index: 1000;
+            min-width: max-content;
+            margin-left: 0px;
+            padding: 5px;
+            font-size: small;
+            text-align: start;
+        }
+
+        .hover-icon {
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hover-container:hover .hover-menu {
+            display: block
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1 class=" p-5">Notes Generator</h1>
+
+
+        <div class="container-fluid text-left">
+
+            <div class="row">
+
+                <div class="col-8">
+
+                    <form>
+                        <div class="mb-3">
+                            <label for="inputIssue" class="form-label">Issue</label>
+                            <div class="input-group mb-3">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="inputIssue"
+                                        placeholder="Type a short description of the issue.">
+                                </div>
+
+                                <div class="hover-container">
+                                    <span class="input-group-text hover-icon"><i class="bi bi-clock"></i></span>
+                                    <div class="hover-menu">
+                                        <label>
+                                            <input type="radio" name="pfIssue" value="ONT Hard Down/No Light levels">
+                                            ONT Hard Down/No Light levels
+                                        </label><br>
+                                        <label>
+                                            <input type="radio" name="pfIssue"
+                                                value="Wi-Fi Hard Down/Pod Crash/Intermittent Crashing">
+                                            Wi-Fi Hard Down/Pod Crash/Intermittent Crashing
+                                        </label><br>
+                                        <label>
+                                            <input type="radio" name="pfIssue" value="Slow speeds/Buffering">
+                                            Slow speeds/Buffering
+                                        </label><br>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tsSteps" class="form-label">Troubleshooting Steps Done</label>
+                            <div class="row">
+                                <div class="col-7">
+                                    <textarea class="form-control" id="tsSteps" rows="7"></textarea>
+                                </div>
+                                <div class="col-5 d-flex flex-column">
+                                    <label>
+                                        <input type="checkbox" name="normSteps" value="Rebooted ONT">
+                                        Rebooted ONT
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="normSteps" value="Rebooted Router">
+                                        Rebooted Router
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="normSteps" value="Patch Cable Damage">
+                                        Checked Patch Cable
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="normSteps" value="Flushed port">
+                                        Flushed port
+                                    </label>
+
+                                    <button type="button" class="btn btn-secondary btn-sm mt-auto w-50" id="clrCheck">Clear Selection</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tsSettings" class="form-label">Settings Changed</label>
+                            <textarea class="form-control" id="tsSettings" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary mb-3" id="genBut">Generate</button>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="col-4 d-flex flex-column">
+
+
+                    <textarea class="flex-grow-1" id="generatedNote" disabled></textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
+        var stepsTextArea = document.getElementById('tsSteps')
+
+        var button = document.getElementById('genBut');
+        var butClear = document.getElementById('clrCheck');
+        var issue = document.getElementById('inputIssue');
+        var steps = document.getElementById('tsSteps');
+        var settings = document.getElementById('tsSettings');
+        var outArea = document.getElementById('generatedNote');
+
+
+        button.addEventListener('click', function () {
+            var str =
+                `Issue:  ${issue.value}
+            
+Troubleshooting Steps: \n${steps.value}
+            
+Settings Changed: \n ${settings.value}`;
+
+            outArea.value = str;
+        });
+
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    if (stepsTextArea.value === '') {
+                        stepsTextArea.value = '- ' + this.value;
+                    } else {
+                        stepsTextArea.value += '\n- ' + this.value;
+                    }
+                } else {
+                    var lines = stepsTextArea.value.split('\n');
+                    var filtered = lines.filter(function (line) {
+                        return line !== '- ' + this.value;
+                    }, this);
+                    stepsTextArea.value = filtered.join('\n');
+                }
+            });
+        });
+
+        
+        butClear.addEventListener('click', function() {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = false
+                var lines = stepsTextArea.value.split('\n');
+                    var filtered = lines.filter(function (line) {
+                        return line !== '- ' + checkbox.value;
+                    }, checkbox);
+                    stepsTextArea.value = filtered.join('\n');
+            });
+        });
+
+        var comIssueRadios = document.querySelectorAll('input[name="pfIssue"]');
+
+        comIssueRadios.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                issue.value = this.value;
+            })
+        });
+
+    </script>
+
+</body>
+
+</html>
