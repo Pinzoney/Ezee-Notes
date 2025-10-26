@@ -70,17 +70,19 @@
                                     <span class="input-group-text hover-icon"><i class="bi bi-clock"></i></span>
                                     <div class="hover-menu">
                                         <label>
-                                            <input type="radio" name="pfIssue" value="ONT Hard Down/No Light levels">
+                                            <button type="button" class="btn btn-secondary btn-sm" name="issPre" id="downONT" value="ONT Hard Down/No Light levels">
                                             ONT Hard Down/No Light levels
+                                            </button>
                                         </label><br>
                                         <label>
-                                            <input type="radio" name="pfIssue"
-                                                value="Wi-Fi Hard Down/Pod Crash/Intermittent Crashing">
+                                            <button type="button" type="btn btn-secondary btn-sm" name="issPre" id="downWifi" value="Wi-Fi Hard Down/Pod Crash/Intermittent Crashing">
                                             Wi-Fi Hard Down/Pod Crash/Intermittent Crashing
-                                        </label><br>
+                                            </button>
+                                        <br>
                                         <label>
-                                            <input type="radio" name="pfIssue" value="Slow speeds/Buffering">
+                                            <button type="button" class="btn btn-secondary btn-sm" name="issPre" id="slowBuff" value="Slow speeds/Buffering">
                                             Slow speeds/Buffering
+                                            </button>
                                         </label><br>
                                     </div>
                                 </div>
@@ -116,10 +118,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="tsSettings" class="form-label">Settings Changed</label>
+
+                        <text>Settings changed?</text>
+                        <button type="button" class="btn btnSwitch" id="btnSwitch"><i class="bi bi-x-lg"></i></button>
+                        <div class="mb-3 invisible">
                             <textarea class="form-control" id="tsSettings" rows="3"></textarea>
                         </div>
+                        
 
                         <div class="mb-3">
                             <button type="button" class="btn btn-primary mb-3" id="genBut">Generate</button>
@@ -146,14 +151,26 @@
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
         var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
+        var issBtns = document.querySelectorAll("button[name=issPre]")
         var stepsTextArea = document.getElementById('tsSteps')
 
         var button = document.getElementById('genBut');
         var butClear = document.getElementById('clrCheck');
+        var butSett = document.getElementById('btnSwitch')
         var issue = document.getElementById('inputIssue');
         var steps = document.getElementById('tsSteps');
         var settings = document.getElementById('tsSettings');
         var outArea = document.getElementById('generatedNote');
+
+        issBtns.forEach(function (button) {
+            button.addEventListener('click', function () {
+                issue.value = this.value
+            })
+        });
+
+        butSett.addEventListener('click', function() {
+            
+        })
 
 
         button.addEventListener('click', function () {
@@ -205,6 +222,8 @@ Settings Changed: \n ${settings.value}`;
                 issue.value = this.value;
             })
         });
+
+
 
     </script>
 
