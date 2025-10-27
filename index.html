@@ -47,16 +47,10 @@
 <body>
 
     <main class="container">
-
         <h1 class=" p-5">Notes Generator</h1>
-
-
         <div class="container-fluid text-left">
-
             <div class="row">
-
                 <div class="col-8">
-
                     <form>
                         <div class="mb-3">
                             <label for="inputIssue" class="form-label">Issue</label>
@@ -65,28 +59,29 @@
                                     <input type="text" class="form-control" id="inputIssue"
                                         placeholder="Type a short description of the issue.">
                                 </div>
-
                                 <div class="hover-container">
                                     <span class="input-group-text hover-icon"><i class="bi bi-clock"></i></span>
                                     <div class="hover-menu">
                                         <label>
-                                            <button type="button" class="btn btn-secondary btn-sm" name="issPre" id="downONT" value="ONT Hard Down/No Light levels">
-                                            ONT Hard Down/No Light levels
+                                            <button type="button" class="btn btn-secondary btn-sm" name="issPre"
+                                                id="downONT" value="ONT Hard Down/No Light levels">
+                                                ONT Hard Down/No Light levels
                                             </button>
                                         </label><br>
                                         <label>
-                                            <button type="button" type="btn btn-secondary btn-sm" name="issPre" id="downWifi" value="Wi-Fi Hard Down/Pod Crash/Intermittent Crashing">
-                                            Wi-Fi Hard Down/Pod Crash/Intermittent Crashing
+                                            <button type="button" class="btn btn-secondary btn-sm" name="issPre"
+                                                id="downWifi" value="Wi-Fi Hard Down/Pod Crash/Intermittent Crashing">
+                                                Wi-Fi Hard Down/Pod Crash/Intermittent Crashing
                                             </button>
-                                        <br>
-                                        <label>
-                                            <button type="button" class="btn btn-secondary btn-sm" name="issPre" id="slowBuff" value="Slow speeds/Buffering">
-                                            Slow speeds/Buffering
-                                            </button>
-                                        </label><br>
+                                            <br>
+                                            <label>
+                                                <button type="button" class="btn btn-secondary btn-sm" name="issPre"
+                                                    id="slowBuff" value="Slow speeds/Buffering">
+                                                    Slow speeds/Buffering
+                                                </button>
+                                            </label><br>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="mb-3">
@@ -105,6 +100,10 @@
                                         Rebooted Router
                                     </label>
                                     <label>
+                                        <input type="checkbox" name="normSteps" value="Optimized Network">
+                                        Optimized Network
+                                    </label>
+                                    <label>
                                         <input type="checkbox" name="normSteps" value="Patch Cable Damage">
                                         Checked Patch Cable
                                     </label>
@@ -112,38 +111,64 @@
                                         <input type="checkbox" name="normSteps" value="Flushed port">
                                         Flushed port
                                     </label>
-
-                                    <button type="button" class="btn btn-secondary btn-sm mt-auto w-50" id="clrCheck">Clear Selection</button>
-
+                                    <button type="button" class="btn btn-secondary btn-sm mt-auto w-50"
+                                        id="clrCheck">Clear Selection</button>
                                 </div>
                             </div>
                         </div>
 
-                        <text>Settings changed?</text>
-                        <button type="button" class="btn btnSwitch" id="btnSwitch"><i class="bi bi-x-lg"></i></button>
-                        <div class="mb-3 invisible">
-                            <textarea class="form-control" id="tsSettings" rows="3"></textarea>
-                        </div>
-                        
+                        <div class="row">
+                            <div>
+                                <text>Settings changed?</text>
+                                <button type="button" class="btn btnSwitch" data-bs-toggle="button" id="btnSwitch"><i
+                                        class="bi bi-x-lg"></i></button>
+                            </div>
+                            <div class="col-7">
 
+                                <div class="mb-3 input-group" style="visibility: hidden">
+                                    <textarea class="form-control" id="tsSettings" rows="3"></textarea>
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="button"
+                                        id="settPre"><i class="bi bi-caret-right-fill"></i></button>
+
+                                </div>
+                            </div>
+                            <div id="chkSetArea" class="col-5 d-flex flex-column" style="visibility: hidden;">
+                                <div class="d-flex gap-2 align-items-center">
+                                    <label><input type="checkbox" name="settCheck" id="ontMode" value="ONT Mode">ONT
+                                        Mode</label>
+                                    <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                            role="switch" id="ontModeSwt" disabled></div>
+                                </div>
+                                <div class="d-flex gap-2 align-items-center">
+                                    <label><input type="checkbox" name="settCheck" id="privMode"
+                                            value="Privacy Mode">Privacy Mode</label>
+                                    <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                            role="switch" id="privModeSwt" disabled></div>
+                                </div>
+                                <div class="d-flex gap-2 align-items-center">
+                                    <label><input type="checkbox" name="settCheck" id="thrdMode"
+                                            value="Thread">Thread</label>
+                                    <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                            role="switch" id="thrdModeSwt" disabled></div>
+                                </div>
+                                <div class="d-flex gap-2 align-items-center">
+                                    <label><input type="checkbox" name="settCheck" id="delOpMode"
+                                            value="Delivery Optimization">Delivery Optimization</label>
+                                    <div class="form-check form-switch"><input class="form-check-input" type="checkbox"
+                                            role="switch" id="delOpModeSwt" disabled></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <button type="button" class="btn btn-primary mb-3" id="genBut">Generate</button>
                         </div>
-
                     </form>
-
                 </div>
                 <div class="col-4 d-flex flex-column">
-
-
                     <textarea class="flex-grow-1" id="generatedNote" disabled></textarea>
-
                 </div>
-
             </div>
-
         </div>
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -151,39 +176,25 @@
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
         var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
+        var settCheck = document.querySelectorAll("input[type=checkbox][name=settCheck]")
+        var swtsSettings = document.querySelectorAll('input[role="switch"]')
         var issBtns = document.querySelectorAll("button[name=issPre]")
         var stepsTextArea = document.getElementById('tsSteps')
-
         var button = document.getElementById('genBut');
         var butClear = document.getElementById('clrCheck');
-        var butSett = document.getElementById('btnSwitch')
+        var butSett = document.getElementById('btnSwitch');
+        var butSettPre = document.getElementById('settPre')
         var issue = document.getElementById('inputIssue');
         var steps = document.getElementById('tsSteps');
         var settings = document.getElementById('tsSettings');
         var outArea = document.getElementById('generatedNote');
+        var settChkArea = document.getElementById('chkSetArea')
 
         issBtns.forEach(function (button) {
             button.addEventListener('click', function () {
                 issue.value = this.value
             })
         });
-
-        butSett.addEventListener('click', function() {
-            
-        })
-
-
-        button.addEventListener('click', function () {
-            var str =
-                `Issue:  ${issue.value}
-            
-Troubleshooting Steps: \n${steps.value}
-            
-Settings Changed: \n ${settings.value}`;
-
-            outArea.value = str;
-        });
-
 
         checkboxes.forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
@@ -203,27 +214,90 @@ Settings Changed: \n ${settings.value}`;
             });
         });
 
-        
-        butClear.addEventListener('click', function() {
+
+        butClear.addEventListener('click', function () {
             checkboxes.forEach(function (checkbox) {
                 checkbox.checked = false
                 var lines = stepsTextArea.value.split('\n');
-                    var filtered = lines.filter(function (line) {
-                        return line !== '- ' + checkbox.value;
-                    }, checkbox);
-                    stepsTextArea.value = filtered.join('\n');
+                var filtered = lines.filter(function (line) {
+                    return line !== '- ' + checkbox.value;
+                }, checkbox);
+                stepsTextArea.value = filtered.join('\n');
             });
         });
 
-        var comIssueRadios = document.querySelectorAll('input[name="pfIssue"]');
+        butSett.addEventListener('click', function () {
+            if (butSett.classList.contains('active')) {
+                settings.style.visibility = 'visible'
+                butSettPre.style.visibility = 'visible'
+            } else {
+                settings.style.visibility = 'hidden'
+                butSettPre.style.visibility = 'hidden'
+                if (butSettPre.classList.contains('active')) {
+                    settChkArea.style.visibility = 'hidden'
+                    butSettPre.classList.toggle('active')
+                }
+                settings.value = ''
+            }
+        });
 
-        comIssueRadios.forEach(function (radio) {
-            radio.addEventListener('change', function () {
-                issue.value = this.value;
+        butSettPre.addEventListener('click', function () {
+            if (butSettPre.classList.contains('active')) {
+                settChkArea.style.visibility = 'visible'
+            } else {
+                settChkArea.style.visibility = 'hidden'
+            }
+        });
+
+        settCheck.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var swtID = document.getElementById(checkbox.id + 'Swt')
+                if (this.checked) {
+                    swtID.disabled = false
+                    if (settings.value === '') {
+                        settings.value = '- ' + this.value + ': OFF'
+                    }
+                } else {
+                    swtID.disabled = true
+                    var linesSet = settings.value.split('\n')
+                    var filteredLines = lines.filter(function (line) {
+                        return !line.includes(this.value);
+                    }, this);
+                    settings.value = linesFiltSet.join('\n')
+                }
             })
         });
 
+        swtsSettings.addEventListener('change', function () {
+            var switchID = this.id
+            var chkID = switchID.slice(0, -3)
+            var relCheckbox = document.getElementById('chkID');
+            var settName = relCheckbox.value;
+            var lines = settings.value.split('\n');
+            var updatedLines = lines.map(function (line) {
+                if (line.includes(settName)) {
+                    if (this.checked) {
+                        return line.replace(': OFF', ': ON');
+                    } else {
+                        return line.replace(': ON', ': OFF');
+                    }
+                } else {
+                    return line;
+                }
+            }, this);
+            settings.value = updatedLines.join('\n')
+        })
 
+        button.addEventListener('click', function () {
+            var str =
+                `Issue:  ${issue.value}
+            
+Troubleshooting Steps: \n${steps.value}
+            
+Settings Changed: \n ${settings.value}`;
+
+            outArea.value = str;
+        });
 
     </script>
 
