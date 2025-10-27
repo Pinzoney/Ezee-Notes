@@ -166,6 +166,9 @@
                 </div>
                 <div class="col-4 d-flex flex-column">
                     <textarea class="flex-grow-1" id="generatedNote" disabled></textarea>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="copyNote">Copy</button>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -184,6 +187,7 @@
         var butClear = document.getElementById('clrCheck');
         var butSett = document.getElementById('btnSwitch');
         var butSettPre = document.getElementById('settPre')
+        var copyOutNote = document.getElementById('copyNote');
         var issue = document.getElementById('inputIssue');
         var steps = document.getElementById('tsSteps');
         var settings = document.getElementById('tsSettings');
@@ -226,6 +230,23 @@
             });
         });
 
+                button.addEventListener('click', function () {
+            var str =
+                `Issue:  ${issue.value}
+            
+Troubleshooting Steps: \n${steps.value}
+            
+Settings Changed: \n ${settings.value}`
+
+            outArea.value = str;
+        });
+
+        copyOutNote.addEventListener('click', function() {
+            if (outArea.value !== '') {
+                navigator.clipboard.writeText(outArea.value);
+            }
+        })
+
         butSett.addEventListener('click', function () {
             if (butSett.classList.contains('active')) {
                 settings.style.visibility = 'visible'
@@ -233,6 +254,9 @@
             } else {
                 settings.style.visibility = 'hidden'
                 butSettPre.style.visibility = 'hidden'
+                settCheck.forEach(function(checkbox) {
+                    checkbox.checked = false;
+                });
                 if (butSettPre.classList.contains('active')) {
                     settChkArea.style.visibility = 'hidden'
                     butSettPre.classList.toggle('active')
@@ -255,12 +279,23 @@
                 if (this.checked) {
                     swtID.disabled = false
                     if (settings.value === '') {
-                        settings.value = '- ' + this.value + ': OFF'
+                        if (!swtID.checked) {
+                            settings.value = '- ' + this.value + ': OFF'
+                        } else {
+                            settings.value = '- ' + this.value + ': ON'
+                        }
+
+                    } else {
+                        if(!swtID.checked) {
+                            settings.value += '\n' + '- ' + this.value + ': OFF'
+                        } else {
+                            settings.value += '\n' + '- ' + this.value + ': ON'
+                        }
                     }
                 } else {
                     swtID.disabled = true
                     var linesSet = settings.value.split('\n')
-                    var filteredLines = lines.filter(function (line) {
+                    var linesFiltSet = linesSet.filter(function (line) {
                         return !line.includes(this.value);
                     }, this);
                     settings.value = linesFiltSet.join('\n')
@@ -268,10 +303,11 @@
             })
         });
 
-        swtsSettings.addEventListener('change', function () {
+        swtsSettings.forEach(function(swtElem) {
+            swtElem.addEventListener('change', function () {
             var switchID = this.id
             var chkID = switchID.slice(0, -3)
-            var relCheckbox = document.getElementById('chkID');
+            var relCheckbox = document.getElementById(chkID);
             var settName = relCheckbox.value;
             var lines = settings.value.split('\n');
             var updatedLines = lines.map(function (line) {
@@ -286,18 +322,8 @@
                 }
             }, this);
             settings.value = updatedLines.join('\n')
-        })
-
-        button.addEventListener('click', function () {
-            var str =
-                `Issue:  ${issue.value}
-            
-Troubleshooting Steps: \n${steps.value}
-            
-Settings Changed: \n ${settings.value}`;
-
-            outArea.value = str;
         });
+        })
 
     </script>
 
