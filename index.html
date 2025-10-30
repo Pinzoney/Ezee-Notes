@@ -8,6 +8,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -132,9 +135,58 @@
             border-radius: 0px;
         }
 
-        .btn-SettCheck {
-            border: 1px black solid;
+        .btnSwtSettings {
+            height: 24px;
+            width: 24px;
+            border: 1.5px rgb(233, 0, 0);
+            border-style: solid;
+            background-color: white;
+            margin-left: 6px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            --bs-btn-hover-border-color: rgb(233, 0, 0);
+            --bs-btn-hover-bg: rgba(233, 0, 0, 0.11);
+            --bs-btn-active-color: green;
+            --bs-btn-active-border-color: green;
         }
+
+        .btnSwtSettings.active:before {
+            content: "\F272";
+            font-family: "bootstrap-icons";
+            color: green;
+            background-color: rgba(0,128,0,0.11);
+        }
+
+        .btnSwtSettings::before {
+            content: "\F659";
+            width:inherit;
+            font-family: "bootstrap-icons";
+            font-size: small;
+            padding-right: 1px;
+            color: red;
+        }
+
+        .btn-SettCheck {
+            width: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px rgba(255, 145, 0, 0.473) solid;
+
+        }
+
+        .btn-SettCheck.active {
+            border: 1.5px rgba(128, 128, 128, 0.651) solid;
+            transform: scale(0.95);
+        }
+
+        .btn-SettCheck:hover {
+            border: 1px rgba(255, 145, 0, 0.473) solid;
+            
+        }
+
     </style>
 
 </head>
@@ -213,15 +265,15 @@
                         </div>
 
                         <div class="row">
-                            <div>
+                            <div class="d-flex align-items-center">
                                 <text class="areaLabel">Settings changed?</text>
-                                <button type="button" class="btn btn-outline-secondary btnSwitch btn-sm"
-                                    data-bs-toggle="button" id="btnSwitch"><i class="bi bi-x-lg"></i></button>
+                                <button type="button" class="btn btnSwitch btnSwtSettings"
+                                    data-bs-toggle="button" id="btnSwitch"></button>
                             </div>
                             <div class="col-7">
 
                                 <div class="mb-3 input-group" style="visibility: hidden">
-                                    <textarea class="form-control textArea" id="tsSettings" rows="3"></textarea>
+                                    <textarea class="form-control textArea" id="tsSettings" rows="5"></textarea>
                                     <button type="button" class="btn btn-SettCheck" data-bs-toggle="button"
                                         id="settPre"><i class="bi bi-caret-right-fill"></i></button>
 
