@@ -359,7 +359,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <button type="button" class="btn btn-primary" id="genBut">Generate</button>
+                            <button type="button" class="btn btn-secondary btn-clearSelection" id="genBut" style="margin-bottom: 10px;">Generate</button>
                         </div>
                     </form>
                 </div>
@@ -436,13 +436,20 @@
         });
 
         button.addEventListener('click', function () {
-            var str =
+            var str;
+            if (butSett.classList.contains('active')) {
+                str =
                 `Issue:  ${issue.value}
             
 Troubleshooting Steps: \n${steps.value}
             
 Settings Changed: \n ${settings.value}`
-
+            } else {
+                str = 
+                `Issue:  ${issue.value}
+            
+Troubleshooting Steps: \n${steps.value}`
+            }
             outArea.value = str;
         });
 
