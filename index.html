@@ -136,6 +136,14 @@
             border-radius: 0px;
         }
 
+        .tsCheckboxArea {
+            max-width: max-content;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border: 1px rgba(128, 128, 128, 0.418) solid;
+            border-left: 0px;
+        }
+
         .tsCheckboxArea>div {
             display: flex;
             align-items: center !important;
@@ -146,6 +154,13 @@
             display: flex;
             align-items: center !important;
             gap: 4px;
+        }
+
+        .d-flex.flex-column.tsCheckboxArea.sideMenu {
+            max-width: max-content;
+            padding-left: 5px;
+            border-left: 1px rgba(128, 128, 128, 0.418) solid;
+            
         }
 
         .btn-secondary.btn-clearSelection {
@@ -285,7 +300,7 @@
                         <div class="mb-3">
                             <label for="tsSteps" class="form-label areaLabel">Troubleshooting Steps Done</label>
                             <div class="row">
-                                <div class="col-7">
+                                <div class="col-7" style="padding-right: 0px;">
                                     <textarea class="form-control textArea" id="tsSteps" rows="7"></textarea>
                                 </div>
                                 <div class="col-5 d-flex flex-column tsCheckboxArea">
@@ -310,28 +325,26 @@
                                             Flushed port
                                         </label>
                                     </div>
-                                    <button type="button" class="btn btn-secondary btn-clearSelection btn-sm mt-auto w-50"
+                                    <button type="button" class="btn btn-secondary btn-clearSelection btn-sm mt-auto"
                                         id="clrCheck">Clear Checkboxes</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex">
                                 <text class="areaLabel">Settings changed?</text>
                                 <button type="button" class="btn btnSwitch btnSwtSettings" data-bs-toggle="button"
                                     id="btnSwitch"></button>
                             </div>
-                            <div class="col-7">
-
-                                <div class="mb-3 input-group" style="visibility: hidden">
+                            <div class="col-7" style="padding-right: 0px;">
+                                <div class="input-group" style="visibility: hidden">
                                     <textarea class="form-control textArea" id="tsSettings" rows="5"></textarea>
                                     <button type="button" class="btn-SettCheck" data-bs-toggle="button" id="settPre"><i
                                             class="bi bi-caret-right-fill"></i></button>
-
                                 </div>
                             </div>
-                            <div id="chkSetArea" class="col-5 d-flex flex-column" style="visibility: hidden;">
+                            <div id="chkSetArea" class="col-5 d-flex flex-column tsCheckboxArea sideMenu" style="visibility: hidden;">
                                 <div class="d-flex gap-2 align-items-center">
                                     <label><input type="checkbox" name="settCheck" id="ontMode" value="ONT Mode">ONT
                                         Mode</label>
@@ -358,7 +371,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mt-3">
                             <button type="button" class="btn btn-secondary btn-clearSelection" id="genBut" style="margin-bottom: 10px;">Generate</button>
                         </div>
                     </form>
@@ -500,7 +513,9 @@ Troubleshooting Steps: \n${steps.value}`
             })
             butSett.classList.toggle('active');
             settings.style.visibility = 'hidden';
-            butSettPre.classList.toggle('active');
+            if (butSettPre.classList.contains('active')) {
+                    butSettPre.classList.toggle('active');
+            }
             butSettPre.style.visibility = 'hidden';
             settChkArea.style.visibility = 'hidden'
             settCheck.forEach(function (checkbox) {
