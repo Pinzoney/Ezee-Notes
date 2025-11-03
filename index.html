@@ -33,6 +33,8 @@
 
         .pageTitle {
             font-family: "Dancing Script";
+            display: flex;
+            align-items: center;
             padding: 15px;
             padding-left: 0px;
         }
@@ -70,9 +72,11 @@
 
         .hover-icon {
             cursor: pointer;
+            height: auto;
             padding: 5px;
             border-top-left-radius: 0%;
             border-bottom-left-radius: 0%;
+
         }
 
         .hover-container:hover .hover-menu {
@@ -166,26 +170,26 @@
             
         }
 
-        .btn-secondary.btn-clearSelection {
+        .btnMain1 {
             font-family: "Roboto Condensed";
             color: black;
-            background-color: #5cc500;
-            border: 0px;
+            background-color: #5cc5005e;
+            border: 2px #5cc500e5 solid;
         }
 
-        .btn-secondary.btn-clearSelection:hover {
+        .btnMain1:hover {
             transform: scale(0.97);
             border: 1px black solid;
-            transition: transform 0.1s, color 0.1s;
+            background-color: #5cc5009d;
+            transition: transform 0.1s, border 0.1s ease-out;
         }
 
-        .btn-secondary.btn-clearSelection:active {
+        .btn.btnMain1:active {
             transform: scale(0.95);
             color: black;
             background-color: #5cc500;
             border: 1px black solid;
-            transition: transform 0.1s;
-            
+            transition: transform 0.1s, background-color 0.1s;
         }
 
         .btnSwtSettings {
@@ -276,7 +280,7 @@
                                         placeholder="Type a short description of the issue.">
                                 </div>
                                 <div class="hover-container">
-                                    <span class="input-group-text hover-icon"><i class="bi bi-clock"></i></span>
+                                    <span class="input-group-text hover-icon btn-SettCheck"><i class="bi bi-clock"></i></span>
                                     <div class="hover-menu">
                                         <label class="align-items-center">
                                             <button type="button" class="btn-hover btn-sm" name="issPre" id="downONT"
@@ -328,7 +332,7 @@
                                             Flushed port
                                         </label>
                                     </div>
-                                    <button type="button" class="btn btn-secondary btn-clearSelection btn-sm mt-auto"
+                                    <button type="button" class="btn btnMain1 btn-sm mt-auto"
                                         id="clrCheck">Clear Checkboxes</button>
                                 </div>
                             </div>
@@ -375,7 +379,7 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <button type="button" class="btn btn-secondary btn-clearSelection" id="genBut" style="margin-bottom: 10px;">Generate</button>
+                            <button type="button" class="btn btnMain1" id="genBut" style="margin-bottom: 10px;">Generate</button>
                         </div>
                     </form>
                 </div>
@@ -383,9 +387,9 @@
                     <textarea class="flex-grow-1" id="generatedNote" disabled></textarea>
                     <div class="container">
                         <div class="row justify-content-between">
-                            <div class="col-4"><button type="button" class="btn btn-outline-secondary btn-sm w-100"
+                            <div class="col-4"><button type="button" class="btn btnMain1 w-100"
                                     id="copyNote">Copy</button></div>
-                            <div class="col-4"><button type="button" class="btn btn-outline-secondary btn-sm w-100"
+                            <div class="col-4"><button type="button" class="btn btnMain1 w-100"
                                     id="clearAll">Clear</button></div>
                         </div>
                     </div>
@@ -514,7 +518,9 @@ Troubleshooting Steps: \n${steps.value}`
             checkboxes.forEach(function (checkbox) {
                 checkbox.checked = false
             })
-            butSett.classList.toggle('active');
+            if (butSett.classList.contains('active')) {
+                butSett.classList.toggle('active');
+            }
             settings.style.visibility = 'hidden';
             if (butSettPre.classList.contains('active')) {
                     butSettPre.classList.toggle('active');
