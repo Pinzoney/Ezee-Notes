@@ -15,6 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
 
         
 
@@ -31,7 +32,11 @@
         }
 
         .pageTitle {
-            font-family: Creepster;
+            font-family: "Dancing Script";
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            padding-left: 0px;
         }
 
         .areaLabel {
@@ -67,9 +72,11 @@
 
         .hover-icon {
             cursor: pointer;
+            height: auto;
             padding: 5px;
             border-top-left-radius: 0%;
             border-bottom-left-radius: 0%;
+
         }
 
         .hover-container:hover .hover-menu {
@@ -136,6 +143,14 @@
             border-radius: 0px;
         }
 
+        .tsCheckboxArea {
+            max-width: max-content;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border: 1px rgba(128, 128, 128, 0.418) solid;
+            border-left: 0px;
+        }
+
         .tsCheckboxArea>div {
             display: flex;
             align-items: center !important;
@@ -148,26 +163,33 @@
             gap: 4px;
         }
 
-        .btn-secondary.btn-clearSelection {
+        .d-flex.flex-column.tsCheckboxArea.sideMenu {
+            max-width: max-content;
+            padding-left: 5px;
+            border-left: 1px rgba(128, 128, 128, 0.418) solid;
+            
+        }
+
+        .btnMain1 {
             font-family: "Roboto Condensed";
             color: black;
-            background-color: #5cc500;
-            border: 0px;
+            background-color: #5cc5005e;
+            border: 2px #5cc500e5 solid;
         }
 
-        .btn-secondary.btn-clearSelection:hover {
+        .btnMain1:hover {
             transform: scale(0.97);
             border: 1px black solid;
-            transition: transform 0.1s, color 0.1s;
+            background-color: #5cc5009d;
+            transition: transform 0.1s, border 0.1s ease-out;
         }
 
-        .btn-secondary.btn-clearSelection:active {
+        .btn.btnMain1:active {
             transform: scale(0.95);
             color: black;
             background-color: #5cc500;
             border: 1px black solid;
-            transition: transform 0.1s;
-            
+            transition: transform 0.1s, background-color 0.1s;
         }
 
         .btnSwtSettings {
@@ -243,8 +265,8 @@
 
     <main class="container main">
         <div class="d-flex">
-            <img src="Assets/Shy Kids Circle Dance B.gif" alt="Skeleton dancing around a transparent background" style="width: 117.53x; height: 166.75px;">
-            <h1 class="p-5 pageTitle">Notes Generator</h1>
+            <img src="/Assets/happythanksgivingsister-happy.gif" alt="Turkey dancing back and forth and happy" style="width: 117.53x; height: 166.75px;">
+            <h1 class="pageTitle">Notes Generator</h1>
         </div>
         <div class="container-fluid text-left">
             <div class="row">
@@ -258,7 +280,7 @@
                                         placeholder="Type a short description of the issue.">
                                 </div>
                                 <div class="hover-container">
-                                    <span class="input-group-text hover-icon"><i class="bi bi-clock"></i></span>
+                                    <span class="input-group-text hover-icon btn-SettCheck"><i class="bi bi-clock"></i></span>
                                     <div class="hover-menu">
                                         <label class="align-items-center">
                                             <button type="button" class="btn-hover btn-sm" name="issPre" id="downONT"
@@ -285,7 +307,7 @@
                         <div class="mb-3">
                             <label for="tsSteps" class="form-label areaLabel">Troubleshooting Steps Done</label>
                             <div class="row">
-                                <div class="col-7">
+                                <div class="col-7" style="padding-right: 0px;">
                                     <textarea class="form-control textArea" id="tsSteps" rows="7"></textarea>
                                 </div>
                                 <div class="col-5 d-flex flex-column tsCheckboxArea">
@@ -310,28 +332,26 @@
                                             Flushed port
                                         </label>
                                     </div>
-                                    <button type="button" class="btn btn-secondary btn-clearSelection btn-sm mt-auto w-50"
+                                    <button type="button" class="btn btnMain1 btn-sm mt-auto"
                                         id="clrCheck">Clear Checkboxes</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex">
                                 <text class="areaLabel">Settings changed?</text>
                                 <button type="button" class="btn btnSwitch btnSwtSettings" data-bs-toggle="button"
                                     id="btnSwitch"></button>
                             </div>
-                            <div class="col-7">
-
-                                <div class="mb-3 input-group" style="visibility: hidden">
+                            <div class="col-7" style="padding-right: 0px;">
+                                <div class="input-group" style="visibility: hidden">
                                     <textarea class="form-control textArea" id="tsSettings" rows="5"></textarea>
                                     <button type="button" class="btn-SettCheck" data-bs-toggle="button" id="settPre"><i
                                             class="bi bi-caret-right-fill"></i></button>
-
                                 </div>
                             </div>
-                            <div id="chkSetArea" class="col-5 d-flex flex-column" style="visibility: hidden;">
+                            <div id="chkSetArea" class="col-5 d-flex flex-column tsCheckboxArea sideMenu" style="visibility: hidden;">
                                 <div class="d-flex gap-2 align-items-center">
                                     <label><input type="checkbox" name="settCheck" id="ontMode" value="ONT Mode">ONT
                                         Mode</label>
@@ -358,8 +378,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <button type="button" class="btn btn-primary" id="genBut">Generate</button>
+                        <div class="mt-3">
+                            <button type="button" class="btn btnMain1" id="genBut" style="margin-bottom: 10px;">Generate</button>
                         </div>
                     </form>
                 </div>
@@ -367,9 +387,9 @@
                     <textarea class="flex-grow-1" id="generatedNote" disabled></textarea>
                     <div class="container">
                         <div class="row justify-content-between">
-                            <div class="col-4"><button type="button" class="btn btn-outline-secondary btn-sm w-100"
+                            <div class="col-4"><button type="button" class="btn btnMain1 w-100"
                                     id="copyNote">Copy</button></div>
-                            <div class="col-4"><button type="button" class="btn btn-outline-secondary btn-sm w-100"
+                            <div class="col-4"><button type="button" class="btn btnMain1 w-100"
                                     id="clearAll">Clear</button></div>
                         </div>
                     </div>
@@ -436,13 +456,20 @@
         });
 
         button.addEventListener('click', function () {
-            var str =
+            var str;
+            if (butSett.classList.contains('active')) {
+                str =
                 `Issue:  ${issue.value}
             
 Troubleshooting Steps: \n${steps.value}
             
 Settings Changed: \n ${settings.value}`
-
+            } else {
+                str = 
+                `Issue:  ${issue.value}
+            
+Troubleshooting Steps: \n${steps.value}`
+            }
             outArea.value = str;
         });
 
@@ -491,9 +518,13 @@ Settings Changed: \n ${settings.value}`
             checkboxes.forEach(function (checkbox) {
                 checkbox.checked = false
             })
-            butSett.classList.toggle('active');
+            if (butSett.classList.contains('active')) {
+                butSett.classList.toggle('active');
+            }
             settings.style.visibility = 'hidden';
-            butSettPre.classList.toggle('active');
+            if (butSettPre.classList.contains('active')) {
+                    butSettPre.classList.toggle('active');
+            }
             butSettPre.style.visibility = 'hidden';
             settChkArea.style.visibility = 'hidden'
             settCheck.forEach(function (checkbox) {
