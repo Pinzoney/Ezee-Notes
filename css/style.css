@@ -1,3 +1,6 @@
+        
+        
+        
         body {
             background-color: #ff9900;  /*#5BC500*/
         }
@@ -7,6 +10,22 @@
             background-color: white;
             border: 2px rgba(0, 0, 0, 0.432) solid !important;
             min-height: 100vh;
+        }
+
+        .navbar {
+            padding: 0;
+        }
+
+        .navbar-brand.pageTitle {
+            padding: 0;
+            font-size: 25px;
+        }
+
+        .nav-item {
+            flex-grow: 1;
+            justify-items: center;
+            border: 1px black solid;
+            font-family: "Roboto Condensed";
         }
 
         .pageTitle {
