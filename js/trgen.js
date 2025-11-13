@@ -11,10 +11,23 @@ var btnCopy = document.getElementById("copyNote")
 var btnClear = document.getElementById("clearAll")
 var btnGen = document.getElementById("genBut")
 
+trReason.addEventListener('change', function() {
+    if (trReason.value = 'option1') {
+        tsSteps.value = trReason.value;
+    }
+})
+
+btnPaste.addEventListener('click', function () {
+    const ontStatsText = document.getElementById("ontStats");
+        var oriHTML = btnPaste.innerHTML
+        navigator.clipboard.readText()
+            .then((clipText) => (ontStatsText.value = clipText));
+});
+
 btnGen.addEventListener('click', function () {
-            var str;
-            str =
-                `Issue: ${trReason.value}
+    var str;
+    str =
+        `Issue: ${trReason.value}
 
 Cx Statement: ${cxState.value}
             
@@ -23,6 +36,53 @@ Troubleshooting Steps: \n${tsSteps.value}
 # of Dispatches: ${nDisp.value}
 
 ONT Stats: ${ontStats.value}`
-            
-            genNote.value = str;
-        });
+
+    genNote.value = str;
+});
+
+btnCopy.addEventListener('click', function () {
+    if (genNote.value !== '') {
+        btnCopy.disabled = true;
+
+        var originalHTML = btnCopy.innerHTML;
+
+        navigator.clipboard.writeText(genNote.value)
+            .then(function () {
+                btnCopy.innerHTML = '<i class="bi bi-check-lg"></i> Copied!';
+                btnCopy.classList.remove('btn-outline-secondary');
+                btnCopy.classList.add('btn-success');
+
+                setTimeout(function () {
+                    btnCopy.innerHTML = originalHTML;
+                    btnCopy.classList.remove('btn-success');
+                    btnCopy.classList.add('btn-outline-secondary');
+                    btnCopy.disabled = false;
+                }, 2000);
+            })
+            .catch(function (error) {
+
+                console.error('Failed to copy:', error);
+
+                btnCopy.innerHTML = '<i class="bi bi-x-lg"></i> Failed';
+                btnCopy.classList.remove('btn-outline-secondary');
+                btnCopy.classList.add('btn-danger');
+
+                setTimeout(function () {
+                    btnCopy.innerHTML = originalHTML;
+                    btnCopy.classList.remove('btn-danger');
+                    btnCopy.classList.add('btn-outline-secondary');
+                    btnCopy.disabled = false;
+                }, 2000);
+            });
+    }
+});
+
+
+btnClear.addEventListener('click', function () {
+    trReason.value = ''
+    cxState.value = ''
+    tsSteps.value = ''
+    nDisp.value = ''
+    ontStats.value = ''
+    genNote.value = ''
+});
