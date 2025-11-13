@@ -1,0 +1,17 @@
+
+
+p.container {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btnMain1.btnSecn {
+    background-color: transparent;
+
+}
+
+button > i.bi-clipboard2-plus-fill {
+
+}
