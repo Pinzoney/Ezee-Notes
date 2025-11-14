@@ -12,6 +12,6 @@ p.container {
 
 }
 
-button > i.bi-clipboard2-plus-fill {
-
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
