@@ -11,10 +11,38 @@ var btnCopy = document.getElementById("copyNote")
 var btnClear = document.getElementById("clearAll")
 var btnGen = document.getElementById("genBut")
 
+var prefillData = {
+    'hdONT': {
+        cxStatement: "Hard Down ONT, lights are on but internet is not working",
+        troubleshootingSteps: " -Power cycled ONT\n -No damage to patch fiber cable\n -No damage to drop bury",
+    },
+    'cutFiber': {
+        cxStatement: "",
+        troubleshootingSteps: "",
+    },
+    'dmgPatch': {
+        cxStatement: "",
+        troubleshootingSteps: "",
+    },
+    'lowLight': {
+        cxStatement: "",
+        troubleshootingSteps: "",
+    },
+    'swapRouters': {
+        cxStatement: "",
+        troubleshootingSteps: "",
+    },
+};
+
 trReason.addEventListener('change', function() {
-    if (trReason.value = 'option1') {
-        tsSteps.value = trReason.value;
+    var selValue = trReason.value
+    var selTrData = prefillData[selValue];
+    if(!selTrData) {
+        console.log('No data found for option: ' + selValue);
+        return
     }
+    cxState.value = selTrData.cxStatement;
+    tsSteps.value = selTrData.troubleshootingSteps;
 })
 
 btnPaste.addEventListener('click', function () {
