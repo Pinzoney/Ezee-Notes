@@ -1,0 +1,17 @@
+
+
+p.container {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btnMain1.btnSecn {
+    background-color: transparent;
+
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

@@ -15,259 +15,42 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
-        
-
-    <style>
-        body {
-            background-color: #ff9900;  /*#5BC500*/
-        }
-
-        .main {
-
-            background-color: white;
-            border: 2px rgba(0, 0, 0, 0.432) solid !important;
-            min-height: 100vh;
-        }
-
-        .pageTitle {
-            font-family: "Dancing Script";
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            padding-left: 0px;
-        }
-
-        .areaLabel {
-            font-family: "Roboto Condensed";
-            font-weight: bold;
-        }
-
-        .textArea {
-            border-radius: 0%;
-        }
-
-        .hover-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .hover-menu {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: 0;
-            background-color: white;
-            border: 1px solid #757575;
-            border-radius: 2px;
-            z-index: 1000;
-            min-width: max-content;
-            margin-left: 0px;
-            padding: 5px;
-            font-size: small;
-            text-align: start;
-            justify-content: space-around;
-        }
-
-        .hover-icon {
-            cursor: pointer;
-            height: auto;
-            padding: 5px;
-            border-top-left-radius: 0%;
-            border-bottom-left-radius: 0%;
-
-        }
-
-        .hover-container:hover .hover-menu {
-            display: block
-        }
-
-        .btn-hover {
-            align-items: center;
-            background-color: white;
-            margin: 1px;
-            border: 1px rgba(179, 179, 179, 0.363) solid;
-            position: relative;
-            overflow: visible;
-        }
-
-        .btn-hover::before {
-            content: "\F231";
-            font-family: "bootstrap-icons";
-            font-weight: bold;
-            font-size: x-small;
-            margin-right: 1px;
-            color: inherit;
-            opacity: 0.7;
-            display: inline-block;
-            transition: opacity .2s ease;
-        }
-
-        .btn-hover:hover::before {
-            content: "\F64D";
-            font-family: "bootstrap-icons";
-            opacity: 1;
-            transition: color 0.3s ease-out;
-        }
-
-        .btn-hover:active::before {
-            content: "\F633";
-            font-family: "bootstrap-icons";
-            opacity: 1;
-            color: #5BC500;
-        }
-
-        .btn-hover::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: -1px;
-            height: 1px;
-            width: 0;
-            background-color: black;
-
-            transition: width 0.3s ease-out;
-        }
-
-        .btn-hover:hover::after {
-            width: calc(100% + 2px);
-        }
-
-        .btn-hover:active::after {
-            background-color: #5BC500;
-            width: calc(100% + 2px);
-        }
-
-        .checkbox {
-            border-radius: 0px;
-        }
-
-        .tsCheckboxArea {
-            max-width: max-content;
-            padding-top: 3px;
-            padding-bottom: 3px;
-            border: 1px rgba(128, 128, 128, 0.418) solid;
-            border-left: 0px;
-        }
-
-        .tsCheckboxArea>div {
-            display: flex;
-            align-items: center !important;
-        }
-
-        .tsCheckboxArea>div label {
-            font-family: "Roboto Condensed";
-            display: flex;
-            align-items: center !important;
-            gap: 4px;
-        }
-
-        .d-flex.flex-column.tsCheckboxArea.sideMenu {
-            max-width: max-content;
-            padding-left: 5px;
-            border-left: 1px rgba(128, 128, 128, 0.418) solid;
-            
-        }
-
-        .btnMain1 {
-            font-family: "Roboto Condensed";
-            color: black;
-            background-color: #5cc5005e;
-            border: 2px #5cc500e5 solid;
-        }
-
-        .btnMain1:hover {
-            transform: scale(0.97);
-            border: 1px black solid;
-            background-color: #5cc5009d;
-            transition: transform 0.1s, border 0.1s ease-out;
-        }
-
-        .btn.btnMain1:active {
-            transform: scale(0.95);
-            color: black;
-            background-color: #5cc500;
-            border: 1px black solid;
-            transition: transform 0.1s, background-color 0.1s;
-        }
-
-        .btnSwtSettings {
-            height: 24px;
-            width: 24px;
-            border: 1.5px rgb(233, 0, 0);
-            border-style: solid;
-            background-color: white;
-            margin-left: 6px;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            --bs-btn-hover-border-color: rgb(233, 0, 0);
-            --bs-btn-hover-bg: rgba(233, 0, 0, 0.11);
-            --bs-btn-active-color: green;
-            --bs-btn-active-border-color: green;
-        }
-
-        .btnSwtSettings.active:before {
-            content: "\F272";
-            font-family: "bootstrap-icons";
-            color: green;
-            background-color: rgba(0, 128, 0, 0.11);
-        }
-
-        .btnSwtSettings::before {
-            content: "\F659";
-            width: inherit;
-            font-family: "bootstrap-icons";
-            font-size: small;
-            padding-right: 1px;
-            color: red;
-        }
-
-        .btn-SettCheck {
-            width: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            border: 1px rgb(255, 145, 0) solid;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            background-color: rgba(255, 145, 0, 0.171);
-        }
-
-        .btn-SettCheck:active {
-            border: 1.5px rgba(255, 145, 0, 0.877) solid;
-            transform: scale(0.92);
-            background-color: rgba(255, 145, 0, 0.171);
-            transition: transform 0.3s ease-in;
-        }
-
-        .btn-SettCheck.active {
-            border: 1.5px rgba(255, 145, 0, 0.877) solid;
-            transform: scale(0.97);
-            background-color: rgba(255, 145, 0, 0.404);
-            transition: background-color 0.1s, transform 0.1s ease-in;
-        }
-
-        .btn-SettCheck:hover {
-            border: 1px rgba(255, 145, 0, 0.664) solid;
-            background-color: rgba(255, 145, 0, 0.171);
-            transform: scale(0.94);
-            transition: transform 0.1s;
-        }
-    </style>
 
 </head>
 
 <body>
 
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <img src="Assets/happythanksgivingsister-happy.gif" alt="Turkey dancing back and forth and happy">
+                <a class="navbar-brand pageTitle" href="#">Notes Generator</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="container d-flex h-100">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-50">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.html">Case</a>
+                            </li>
+                            <li class="nav-item" style="border-right: 0px; border-left: 0px">
+                                <a class="nav-link" href="trgen.html">Truck Roll</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">TBD</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
     <main class="container main">
-        <div class="d-flex">
-            <img src="Assets/happythanksgivingsister-happy.gif" alt="Turkey dancing back and forth and happy" style="width: 117.53x; height: 166.75px;">
-            <h1 class="pageTitle">Notes Generator</h1>
-        </div>
         <div class="container-fluid text-left">
             <div class="row">
                 <div class="col-8">
@@ -280,7 +63,8 @@
                                         placeholder="Type a short description of the issue.">
                                 </div>
                                 <div class="hover-container">
-                                    <span class="input-group-text hover-icon btn-SettCheck"><i class="bi bi-clock"></i></span>
+                                    <span class="input-group-text hover-icon btn-SettCheck"><i
+                                            class="bi bi-clock"></i></span>
                                     <div class="hover-menu">
                                         <label class="align-items-center">
                                             <button type="button" class="btn-hover btn-sm" name="issPre" id="downONT"
@@ -312,10 +96,12 @@
                                 </div>
                                 <div class="col-5 d-flex flex-column tsCheckboxArea">
                                     <div>
-                                        <label><input type="checkbox" name="normSteps" value="Rebooted ONT">Rebooted ONT</label>
+                                        <label><input type="checkbox" name="normSteps" value="Rebooted ONT">Rebooted
+                                            ONT</label>
                                     </div>
                                     <div>
-                                        <label><input type="checkbox" name="normSteps" value="Rebooted Router">Rebooted Router</label>
+                                        <label><input type="checkbox" name="normSteps" value="Rebooted Router">Rebooted
+                                            Router</label>
                                     </div>
                                     <div>
                                         <label><input type="checkbox" name="normSteps" value="Optimized Network">
@@ -332,8 +118,8 @@
                                             Flushed port
                                         </label>
                                     </div>
-                                    <button type="button" class="btn btnMain1 btn-sm mt-auto"
-                                        id="clrCheck">Clear Checkboxes</button>
+                                    <button type="button" class="btn btnMain1 btn-sm mt-auto" id="clrCheck">Clear
+                                        Checkboxes</button>
                                 </div>
                             </div>
                         </div>
@@ -351,7 +137,8 @@
                                             class="bi bi-caret-right-fill"></i></button>
                                 </div>
                             </div>
-                            <div id="chkSetArea" class="col-5 d-flex flex-column tsCheckboxArea sideMenu" style="visibility: hidden;">
+                            <div id="chkSetArea" class="col-5 d-flex flex-column tsCheckboxArea sideMenu"
+                                style="visibility: hidden;">
                                 <div class="d-flex gap-2 align-items-center">
                                     <label><input type="checkbox" name="settCheck" id="ontMode" value="ONT Mode">ONT
                                         Mode</label>
@@ -379,7 +166,8 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <button type="button" class="btn btnMain1" id="genBut" style="margin-bottom: 10px;">Generate</button>
+                            <button type="button" class="btn btnMain1" id="genBut"
+                                style="margin-bottom: 10px;">Generate</button>
                         </div>
                     </form>
                 </div>
@@ -399,222 +187,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-        var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
-        var settCheck = document.querySelectorAll("input[type=checkbox][name=settCheck]")
-        var swtsSettings = document.querySelectorAll('input[role="switch"]')
-        var issBtns = document.querySelectorAll("button[name=issPre]")
-        var stepsTextArea = document.getElementById('tsSteps')
-        var button = document.getElementById('genBut');
-        var butClear = document.getElementById('clrCheck');
-        var butSett = document.getElementById('btnSwitch');
-        var butSettPre = document.getElementById('settPre')
-        var copyOutNote = document.getElementById('copyNote');
-        var clearAll = document.getElementById('clearAll');
-        var issue = document.getElementById('inputIssue');
-        var steps = document.getElementById('tsSteps');
-        var settings = document.getElementById('tsSettings');
-        var outArea = document.getElementById('generatedNote');
-        var settChkArea = document.getElementById('chkSetArea')
-
-        issBtns.forEach(function (button) {
-            button.addEventListener('click', function () {
-                issue.value = this.value
-            })
-        });
-
-        checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    if (stepsTextArea.value === '') {
-                        stepsTextArea.value = '- ' + this.value;
-                    } else {
-                        stepsTextArea.value += '\n- ' + this.value;
-                    }
-                } else {
-                    var lines = stepsTextArea.value.split('\n');
-                    var filtered = lines.filter(function (line) {
-                        return line !== '- ' + this.value;
-                    }, this);
-                    stepsTextArea.value = filtered.join('\n');
-                }
-            });
-        });
-
-
-        butClear.addEventListener('click', function () {
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = false
-                var lines = stepsTextArea.value.split('\n');
-                var filtered = lines.filter(function (line) {
-                    return line !== '- ' + checkbox.value;
-                }, checkbox);
-                stepsTextArea.value = filtered.join('\n');
-            });
-        });
-
-        button.addEventListener('click', function () {
-            var str;
-            if (butSett.classList.contains('active')) {
-                str =
-                `Issue:  ${issue.value}
-            
-Troubleshooting Steps: \n${steps.value}
-            
-Settings Changed: \n ${settings.value}`
-            } else {
-                str = 
-                `Issue:  ${issue.value}
-            
-Troubleshooting Steps: \n${steps.value}`
-            }
-            outArea.value = str;
-        });
-
-        copyOutNote.addEventListener('click', function () {
-            if (outArea.value !== '') {
-                copyOutNote.disabled = true;
-
-                var originalHTML = copyOutNote.innerHTML;
-
-                navigator.clipboard.writeText(outArea.value)
-                    .then(function () {
-                        copyOutNote.innerHTML = '<i class="bi bi-check-lg"></i> Copied!';
-                        copyOutNote.classList.remove('btn-outline-secondary');
-                        copyOutNote.classList.add('btn-success');
-
-                        setTimeout(function () {
-                            copyOutNote.innerHTML = originalHTML;
-                            copyOutNote.classList.remove('btn-success');
-                            copyOutNote.classList.add('btn-outline-secondary');
-                            copyOutNote.disabled = false;
-                        }, 2000);
-                    })
-                    .catch(function (error) {
-
-                        console.error('Failed to copy:', error);
-
-                        copyOutNote.innerHTML = '<i class="bi bi-x-lg"></i> Failed';
-                        copyOutNote.classList.remove('btn-outline-secondary');
-                        copyOutNote.classList.add('btn-danger');
-
-                        setTimeout(function () {
-                            copyOutNote.innerHTML = originalHTML;
-                            copyOutNote.classList.remove('btn-danger');
-                            copyOutNote.classList.add('btn-outline-secondary');
-                            copyOutNote.disabled = false;
-                        }, 2000);
-                    });
-            }
-        });
-
-        clearAll.addEventListener('click', function () {
-            issue.value = ''
-            stepsTextArea.value = ''
-            settings.value = ''
-            outArea.value = ''
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = false
-            })
-            if (butSett.classList.contains('active')) {
-                butSett.classList.toggle('active');
-            }
-            settings.style.visibility = 'hidden';
-            if (butSettPre.classList.contains('active')) {
-                    butSettPre.classList.toggle('active');
-            }
-            butSettPre.style.visibility = 'hidden';
-            settChkArea.style.visibility = 'hidden'
-            settCheck.forEach(function (checkbox) {
-                checkbox.checked = false;
-            })
-            swtsSettings.forEach(function (checkbox) {
-                checkbox.checked = false;
-                checkbox.disabled = true;
-            })
-        });
-
-        butSett.addEventListener('click', function () {
-            if (butSett.classList.contains('active')) {
-                settings.style.visibility = 'visible'
-                butSettPre.style.visibility = 'visible'
-            } else {
-                settings.style.visibility = 'hidden'
-                butSettPre.style.visibility = 'hidden'
-                settCheck.forEach(function (checkbox) {
-                    checkbox.checked = false;
-                });
-                if (butSettPre.classList.contains('active')) {
-                    settChkArea.style.visibility = 'hidden'
-                    butSettPre.classList.toggle('active')
-                }
-                settings.value = ''
-            }
-        });
-
-        butSettPre.addEventListener('click', function () {
-            if (butSettPre.classList.contains('active')) {
-                settChkArea.style.visibility = 'visible'
-            } else {
-                settChkArea.style.visibility = 'hidden'
-            }
-        });
-
-        settCheck.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                var swtID = document.getElementById(checkbox.id + 'Swt')
-                if (this.checked) {
-                    swtID.disabled = false
-                    if (settings.value === '') {
-                        if (!swtID.checked) {
-                            settings.value = '- ' + this.value + ': OFF'
-                        } else {
-                            settings.value = '- ' + this.value + ': ON'
-                        }
-
-                    } else {
-                        if (!swtID.checked) {
-                            settings.value += '\n' + '- ' + this.value + ': OFF'
-                        } else {
-                            settings.value += '\n' + '- ' + this.value + ': ON'
-                        }
-                    }
-                } else {
-                    swtID.disabled = true
-                    var linesSet = settings.value.split('\n')
-                    var linesFiltSet = linesSet.filter(function (line) {
-                        return !line.includes(this.value);
-                    }, this);
-                    settings.value = linesFiltSet.join('\n')
-                }
-            })
-        });
-
-        swtsSettings.forEach(function (swtElem) {
-            swtElem.addEventListener('change', function () {
-                var switchID = this.id
-                var chkID = switchID.slice(0, -3)
-                var relCheckbox = document.getElementById(chkID);
-                var settName = relCheckbox.value;
-                var lines = settings.value.split('\n');
-                var updatedLines = lines.map(function (line) {
-                    if (line.includes(settName)) {
-                        if (this.checked) {
-                            return line.replace(': OFF', ': ON');
-                        } else {
-                            return line.replace(': ON', ': OFF');
-                        }
-                    } else {
-                        return line;
-                    }
-                }, this);
-                settings.value = updatedLines.join('\n')
-            });
-        })
-
-    </script>
+    <script src="js/tsnotes.js"></script>
 
 </body>
 
