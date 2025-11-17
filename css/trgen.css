@@ -15,3 +15,30 @@ p.container {
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+.btnSwitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px red solid;
+    font-family: 'Roboto Condensed';
+    --bs-btn-hover-border-color: rgb(250, 204, 1);
+    --bs-btn-hover-background:  rgba(250, 204, 1, 0.37);
+    --bs-btn-active-border-color: ;
+}
+
+.btnSwitch::before {
+    content: "Unusable";
+    font-family: 'Roboto Condensed';
+    align-content: center;
+}
+
+.btnSwitch:hover::before {
+    content: "Usable?";
+    font-family: 'Roboto Condensed';
+}
+
+.btnSwitch.active::before {
+    content: "Usable";
+    font-family: 'Roboto Condensed'
+}

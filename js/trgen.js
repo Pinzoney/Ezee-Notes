@@ -58,7 +58,6 @@ dispBtns.forEach(function(button) {
 
 btnPaste.addEventListener('click', function () {
     const ontStatsText = document.getElementById("ontStats");
-        var oriHTML = btnPaste.innerHTML
         navigator.clipboard.readText()
             .then((clipText) => (ontStatsText.value = clipText));
 });
@@ -71,8 +70,7 @@ btnGen.addEventListener('click', function () {
         console.log('No data found for option: ' + selValue);
         return
     }
-    cxState.value = selTrData.cxStatement;
-    tsSteps.value = selTrData.troubleshootingSteps;
+
     str =
         `Cx Statement: ${cxState.value}
             
