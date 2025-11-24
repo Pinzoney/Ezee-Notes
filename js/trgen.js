@@ -11,6 +11,7 @@ var genNote = document.getElementById("generatedNote")
 var btnCopy = document.getElementById("copyNote")
 var btnClear = document.getElementById("clearAll")
 var btnGen = document.getElementById("genBut")
+var btnUsbl = document.getElementById("bswtUsable")
 
 var prefillData = {
     'hdONT': {
@@ -56,6 +57,22 @@ dispBtns.forEach(function(button) {
     })
 });
 
+btnUsbl.addEventListener('click', function () {
+    if(btnUsbl.classList.contains('active')) {
+        var lines = genNote.value.split('\n');
+        var filtered = lines.filter(function (line) {
+            return line !== 'Unusable'
+        });
+        genNote.value = 'Usable\n' + filtered.join('\n')
+    } else {
+        var lines = genNote.value.split('\n');
+        var filtered = lines.filter(function (line) {
+            return line !== 'Usable'
+        });
+        genNote.value = 'Unusable\n' + filtered.join('\n')
+    }
+})
+
 btnPaste.addEventListener('click', function () {
     const ontStatsText = document.getElementById("ontStats");
         navigator.clipboard.readText()
@@ -64,6 +81,10 @@ btnPaste.addEventListener('click', function () {
 
 btnGen.addEventListener('click', function () {
     var str;
+    var use = 'Unusable';
+    if(btnUsbl.classList.contains('active')) {
+        use = 'Usable'
+    }
         var selValue = trReason.value
     var selTrData = prefillData[selValue];
     if(!selTrData) {
@@ -72,7 +93,9 @@ btnGen.addEventListener('click', function () {
     }
 
     str =
-        `Cx Statement: ${cxState.value}
+        `${use}
+        
+Cx Statement: ${cxState.value}
             
 Troubleshooting Steps: \n${tsSteps.value}
             
@@ -122,10 +145,21 @@ btnCopy.addEventListener('click', function () {
 
 
 btnClear.addEventListener('click', function () {
+    if(btnUsbl.classList.contains('active')) {
+        btnUsbl.classList.toggle('active')
+    }
     trReason.value = ''
     cxState.value = ''
     tsSteps.value = ''
     nDisp.value = ''
     ontStats.value = ''
-    genNote.value = ''
+    genNote.value = `Unusable
+        
+Cx Statement:
+            
+Troubleshooting Steps: 
+            
+# of Dispatches: 
+
+ONT Stats: `
 });
