@@ -38,6 +38,10 @@ var prefillData = {
         cxStatement: "Cx requests to reposition their modem to a different area",
         troubleshootingSteps: " -Cx requests to move their modem since they think they could get better signal/it's installed in a enclosed space and could be having heating issues\n -Requesting FST to assist in modem their modem to a different area is possible",
     },
+    'rouFlap': {
+        cxStatement: "Cx reports intermittent wifi issues, wifi sometimes goes fully out, or is very slow, they report outages of about a minute and happens very often throughout the day",
+        troubleshootingSteps: " -Rebooted modem and router\n -disabled IPv6\n -router has alerts in the logs that they turned off, but not marked as an outage\n -As a provisional workaround, please swap the cx's modem for a 5222XG so we are able to put the modem in ROUTED mode and the router in BRIDGE mode\n -If cx has their own routers, please assist them in switching their routers to bridge mode/Access Point mode if at all possible"
+    },
 };
 
 trReason.addEventListener('change', function() {
