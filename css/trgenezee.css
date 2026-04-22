@@ -107,11 +107,3 @@ a.nav-link:hover {
     color: rgb(223, 223, 223);
     transition: background-color 0.1s ease-in, color 0.1s ease-in;
 }
-
-.nav-button::after {
-    content: "\F234";
-    font-family: "bootstrap-icons";
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
