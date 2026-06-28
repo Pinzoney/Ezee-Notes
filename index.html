@@ -27,12 +27,12 @@
             <div class="d-flex align-items-center">
                 <img src="Assets/ezgif.com-crop.gif" alt="Turkey dancing back and forth and happy"
                     style="width: 75px; height: 50px;">
-                <a class="navbar-brand pageTitle" href="#">Notes Generator</a>
+                <a class="navbar-brand pageTitle" href="#">Note Generator</a>
             </div>
         </div>
         <div class="container-fluid row mainrow" style="min-width: 100vh; min-height: 90vh;">
-            <div class="sidemenu" style="border: 1px black solid">
-                <ul class="navbar-nav nav-fill me-auto mb-2 mb-lg-0 w-50 smcont">
+            <div class="sidemenu">
+                <ul class="navbar-nav nav-fill mb-lg-0 smcont">
                     <li class="nav-item smitem">
                         <a class="nav-link active justify-content-center gap-1" href="index.html"><i
                                 class="bi bi-journal-check"></i>Case</a>
@@ -46,22 +46,35 @@
                     </li>
                 </ul>
             </div>
-            <div class="col mainnotes" style="padding: 2rem; padding-top: 1rem">
+            <div class="col mainnotes" style="padding: 1rem; padding-top: 1rem">
                 <div class="row" style="height: 80vh;">
                     <div class="col-8">
 
                         <!-- //T2 Type buttons -->
 
-                        <div class="row mb-3 mt-3" style="display: flexbox; justify-content:center; align-items:center ">
+                        <div class="row mb-3" style="display: flexbox; justify-content:center; align-items:center ">
                             <div>
-                                <button type="button" class="btn btnSwtSettings" data-bs-toggle="button" id="npsCase">NPS Case</button>
-                                <button type="button" class="btn btnSwtSettings" data-bs-toggle="button" id="trAudit">TR Audit</button>
-                                <button type="button" class="btn btnSwtSettings" data-bs-toggle="button" id="t2Chat">Tier 2 Chat Assist</button>
+                                <div class="d-flex gap-1" role="group">
+                                    <input type="radio" class="btn-check" name="btnT2Type" id="npsCase"
+                                        data-line="T2 NPS Case Review" autocomplete="off" checked>
+                                    <label class="btn btnRadioType" for="npsCase">NPS Case</label></input>
+                                    <input type="radio" class="btn-check" name="btnT2Type" id="trAudit"
+                                        data-line="T2 Truck Roll Audit Review" autocomplete="off">
+                                    <label class="btn btnRadioType" for="trAudit">TR Audit</label></input>
+                                    <input type="radio" class="btn-check" name="btnT2Type" id="t2Chat"
+                                        data-line="T2 Support Request review (Chat)" autocomplete="off">
+                                    <label class="btn btnRadioType" for="t2Chat">T2 Chat Support</label></input>
+                                </div>
                             </div>
                         </div>
 
+                        <div class="form-floating col-2 caseNumField">
+                            <input type="text" class="form-control" placeholder="Case #" id="caseNum">
+                            <label for="caseNum" style="font-size: smaller; padding: 0.59rem 0.5rem;">Case #:</label>
+                        </div>
+
                         <form>
-                            <div class="mb-3">
+                            <div class="mt-4">
                                 <label for="inputIssue" class="form-label areaLabel">Issue</label>
                                 <div class="input-group mb-3 align-items-center">
                                     <div class="w-50">
@@ -76,81 +89,7 @@
                                 <div class="row">
                                     <div class="col-7" style="padding-right: 0px;">
                                         <textarea class="form-control textArea" id="tsSteps" rows="7"></textarea>
-                                    </div>
-                                    <div class="col-5 d-flex flex-column tsCheckboxArea">
-                                        <div>
-                                            <label><input type="checkbox" name="normSteps" value="Rebooted ONT">Rebooted
-                                                ONT</label>
-                                        </div>
-                                        <div>
-                                            <label><input type="checkbox" name="normSteps"
-                                                    value="Rebooted Router">Rebooted
-                                                Router</label>
-                                        </div>
-                                        <div>
-                                            <label><input type="checkbox" name="normSteps" value="Optimized Network">
-                                                Optimized Network
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label><input type="checkbox" name="normSteps" value="Patch Cable Damage">
-                                                Checked Patch Cable
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label><input type="checkbox" name="normSteps" value="Flushed port">
-                                                Flushed port
-                                            </label>
-                                        </div>
-                                        <button type="button" class="btn btnMain1 btn-sm mt-auto" id="clrCheck">Clear
-                                            Checkboxes</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="d-flex">
-                                    <text class="areaLabel">Settings changed?</text>
-                                    <button type="button" class="btn btnSwitch btnSwtSettings" data-bs-toggle="button"
-                                        id="btnSwitch"></button>
-                                </div>
-                                <div class="col-7" style="padding-right: 0px;">
-                                    <div class="input-group" style="visibility: hidden">
-                                        <textarea class="form-control textArea" id="tsSettings" rows="5"></textarea>
-                                        <button type="button" class="btn-SettCheck" data-bs-toggle="button"
-                                            id="settPre"><i class="bi bi-caret-right-fill"></i></button>
-                                    </div>
-                                </div>
-                                <div id="chkSetArea" class="col-5 d-flex flex-column tsCheckboxArea sideMenu"
-                                    style="visibility: hidden;">
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <label><input type="checkbox" name="settCheck" id="ontMode" value="ONT Mode">ONT
-                                            Mode</label>
-                                        <div class="form-check form-switch"><input class="form-check-input"
-                                                type="checkbox" role="switch" id="ontModeSwt" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <label><input type="checkbox" name="settCheck" id="privMode"
-                                                value="Privacy Mode">Privacy Mode</label>
-                                        <div class="form-check form-switch"><input class="form-check-input"
-                                                type="checkbox" role="switch" id="privModeSwt" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <label><input type="checkbox" name="settCheck" id="thrdMode"
-                                                value="Thread">Thread</label>
-                                        <div class="form-check form-switch"><input class="form-check-input"
-                                                type="checkbox" role="switch" id="thrdModeSwt" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <label><input type="checkbox" name="settCheck" id="delOpMode"
-                                                value="Delivery Optimization">Delivery Optimization</label>
-                                        <div class="form-check form-switch"><input class="form-check-input"
-                                                type="checkbox" role="switch" id="delOpModeSwt" disabled>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div>                               </div>
                             </div>
                             <div class="mt-3">
                                 <button type="button" class="btn btnMain1" id="genBut"
@@ -159,7 +98,16 @@
                         </form>
                     </div>
                     <div class="col-4 d-flex flex-column">
-                        <textarea class="flex-grow-1" id="generatedNote" disabled></textarea>
+                        <textarea class="flex-grow-1" id="generatedNote">
+T2 NPS Case Review
+
+Case #: 
+
+Cx Statement: 
+
+Troubleshooting steps:
+
+                        </textarea>
                         <div class="container">
                             <div class="row justify-content-between">
                                 <div class="col-4"><button type="button" class="btn btnMain1 w-100"
@@ -180,8 +128,8 @@
         const five = document.querySelector('[data-id="five-server"]');
         if (five) five.addEventListener("connected", main);
         else window.addEventListener("load", main);
-        </script>
-    
-    </body>
+    </script>
+
+</body>
 
 </html>
