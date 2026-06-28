@@ -201,16 +201,12 @@
         }
 
         .btnSwtSettings {
-            height: 24px;
-            width: 24px;
-            border: 1.5px rgb(233, 0, 0);
+            border: 1.5px #e05020;
             border-style: solid;
             background-color: white;
             margin-left: 6px;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 5;
+            font-family: 'Roboto Condensed';
             --bs-btn-hover-border-color: rgb(233, 0, 0);
             --bs-btn-hover-bg: rgba(233, 0, 0, 0.11);
             --bs-btn-active-color: green;
@@ -218,19 +214,8 @@
         }
 
         .btnSwtSettings.active:before {
-            content: "\F272";
-            font-family: "bootstrap-icons";
-            color: green;
-            background-color: rgba(0, 128, 0, 0.11);
-        }
-
-        .btnSwtSettings::before {
-            content: "\F659";
-            width: inherit;
-            font-family: "bootstrap-icons";
-            font-size: small;
-            padding-right: 1px;
-            color: red;
+            color: black;
+            background-color: #e05020;
         }
 
         .btn-SettCheck {
