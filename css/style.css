@@ -44,6 +44,7 @@
 
         .textArea {
             border-radius: 0%;
+            font-size: small;
         }
 
         .tsCheckboxArea {

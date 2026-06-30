@@ -1,5 +1,3 @@
-
-
 body {
     background-color: #e05020;
 }
@@ -52,7 +50,28 @@ body {
     border-bottom-right-radius: 1rem;
 }
 
-.btnSwitch {
+.btnRadioType {
+    --bs-btn-border-color: #e05020;
+    border: 1px #e05020;
+    border-style: solid;
+    background-color: white;
+    margin-left: 6px;
+    padding: 5;
+    font-family: 'Roboto Condensed';
+    --bs-btn-hover-border-color: #e05020;
+    --bs-btn-hover-bg: #e9663a3f;
+    --bs-btn-active-color: black;
+    --bs-btn-active-border-color: #e05020;
+    --bs-btn-active-bg: #e9663a3f;
+}
+
+/* .btnRadioType:hover {
+    border: 1.5px #e05020 solid;
+    background-color: #e050204b;
+} */
+
+.btnSwitch,
+.btnSwitch-Res {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,9 +79,48 @@ body {
     border: 2px red solid;
     font-family: 'Roboto Condensed';
     --bs-btn-hover-border-color: rgb(250, 204, 1);
-    --bs-btn-hover-bg:  rgba(250, 204, 1, 0.137);
+    --bs-btn-hover-bg: rgba(250, 204, 1, 0.137);
     --bs-btn-active-border-color: rgb(250, 204, 1);
     --bs-btn-active-bg: rgba(250, 204, 1, 0.192);
+}
+
+.btnSubtype {
+    border: 1.5px #e05020;
+    border-style: solid;
+    background-color: white;
+    z-index: 8;
+    margin-left: 6px;
+    padding: 5;
+    font-family: 'Roboto Condensed';
+}
+
+.btn-check:checked + .btnSubtype {
+    border-bottom: 2px white solid;
+}
+
+.btnSwitch-Res {
+    font-size: small;
+    border: 1px green solid;
+    width: 90px;
+    white-space: nowrap;
+}
+
+.btnSwitch-Res:before {
+    content: '\F26B';
+    font-family: "bootstrap-icons";
+    margin-right: 4px;
+}
+
+.btnSwitch-Res.active:before {
+    content: '\F5BB';
+    font-family: "bootstrap-icons";
+    margin-right: 3px;
+}
+
+.btnSwitch-Res:hover::before {
+    content: '\F5BB';
+    font-family: "bootstrap-icons";
+    margin-right: 3px;
 }
 
 .smcont {
@@ -93,7 +151,9 @@ a.nav-link:hover {
     transition: background-color 0.1s ease-in, color 0.1s ease-in;
 }
 
-.caseNumField {
+.caseNumField,
+#btnRes,
+#t2SubtypeGroup {
     display: none;
 }
 
@@ -103,6 +163,71 @@ a.nav-link:hover {
     height: 40px !important;
 }
 
+/* Subtype menu styling */
+
+#t2SubtypeGroup {
+    position: relative;
+    z-index: 2;
+}
+
+.subtypeMenuArea {
+    margin-top: -1px;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.subtypeMenuArea-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+.subtypeMenuArea-box {
+    border: 1px #e05020 solid;
+    border-radius: 0.25rem;
+}
+
+.subtypeMenu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.subtypeMenu-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+    /* Logic for fields and submenus to be visible/invisible */
+
 .col-8:has(#npsCase:checked) .caseNumField {
     display: block;
+}
+
+.col-8:has(#npsCase:checked) #btnRes {
+    display: flex;
+}
+
+.col-8:has(#npsCase:checked) #t2SubtypeGroup {
+    display: inline-flex;
+}
+
+.col-8:has(#npsCase:checked):has(#tsCase:checked) .subtypeMenuArea,
+.col-8:has(#npsCase:checked):has(#csCase:checked) .subtypeMenuArea,
+.col-8:has(#npsCase:checked):has(#fieldST:checked) .subtypeMenuArea {
+    grid-template-rows: 1fr;
+}
+
+.col-8:has(#tsCase:checked) #tsMenu {
+    grid-template-rows: 1fr;
+}
+
+.col-8:has(#csCase:checked) #csMenu {
+    grid-template-rows: 1fr;
+}
+
+.col-8:has(#fieldST:checked) #ftMenu {
+    grid-template-rows: 1fr;
 }

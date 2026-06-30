@@ -1,7 +1,9 @@
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 var t2TypeBtns = document.querySelectorAll("input[type=radio][name=btnT2Type]")
-var t2TypeGroup = document.querySelector('[role="group"]')
+var btnRes = document.querySelector("button[type=button][name=btnRes]")
+var t2TypeGroup = document.getElementById('t2TypeGroup')
+var t2SubtypeGroup = document.getElementById('t2SubtypeGroup')
 var caseNumField = document.getElementById('caseNum')
 var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
 var stepsTextArea = document.getElementById('tsSteps')
@@ -26,11 +28,12 @@ t2TypeGroup.addEventListener('change', function (e) {
     var lines = genNote.value.split('\n');
     var previousLines = [...t2TypeBtns].map(function (btn) {return btn.dataset.line })
     var filtered = stripCaseLine(lines).filter(function (line) {
-        return !previousLines.includes(line)
+        return !previousLines.includes(line) && line !== 'Resolved' && line !== 'Follow-up Needed'
     })
 
     if (e.target.id === 'npsCase') {
-        filtered.splice(0, 0, '', 'Case #: ' + caseNumField.value)
+        var statusLine = btnRes.classList.contains('active') ? 'Follow-up Needed' : 'Resolved'
+        filtered.splice(0, 0, '', 'Case #: ' + caseNumField.value, statusLine)
     }
 
     genNote.value = e.target.dataset.line + '\n' + filtered.join('\n')
@@ -49,15 +52,30 @@ caseNumField.addEventListener('input', function () {
     genNote.value = dataLine + '\n' + filtered.join('\n')
 })
 
-butClear.addEventListener('click', function () {
-    checkboxes.forEach(function (checkbox) {
-        checkbox.checked = false
-        var lines = stepsTextArea.value.split('\n');
-        var filtered = lines.filter(function (line) {
-            return line !== '- ' + checkbox.value;
-        }, checkbox);
-        stepsTextArea.value = filtered.join('\n');
-    });
+btnRes.addEventListener('click', function () {
+    setTimeout(function () {
+        var isActive = btnRes.classList.contains('active')
+        btnRes.textContent = isActive ? 'FU needed' : 'Resolved'
+
+        var lines = genNote.value.split('\n')
+        var updated = lines.map(function (line) {
+            if (line === 'Resolved' || line === 'Follow-up Needed') {
+                return isActive ? 'Follow-up Needed' : 'Resolved'
+            }
+            return line
+        })
+        genNote.value = updated.join('\n')
+    }, 0)
+});
+
+btnRes.addEventListener('mouseenter', function () {
+    if (!btnRes.classList.contains('active')) {
+        btnRes.textContent = 'Follow-up?'
+    }
+})
+
+btnRes.addEventListener('mouseleave', function () {
+    btnRes.textContent = btnRes.classList.contains('active') ? 'FU needed' : 'Resolved'
 });
 
 // Copy Button logic
