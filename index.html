@@ -2,182 +2,198 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truck Roll Generator</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Truck Roll Generator</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/addmainnotes.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+   <link
+      href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/addmainnotes.css">
 
 </head>
 
 <body>
-    <div class="container-fluid main" style="padding: 0px;">
-        <div class="container-fluid cont-top">
-            <div class="d-flex align-items-center">
-                <img src="Assets/ezgif.com-crop.gif" alt="Turkey dancing back and forth and happy"
-                    style="width: 75px; height: 50px;">
-                <a class="navbar-brand pageTitle" href="#">Note Generator</a>
-            </div>
-        </div>
-        <div class="container-fluid row mainrow" style="min-width: 100vh; min-height: 90vh;">
-            <div class="sidemenu">
-                <ul class="navbar-nav nav-fill mb-lg-0 smcont mt-4">
-                    <li class="nav-item smitem">
-                        <a class="nav-link active justify-content-center gap-1" href="index.html"><i
-                                class="bi bi-journal-check"></i>Case</a>
-                    </li>
-                    <li class="nav-item smitem">
-                        <a class="nav-link justify-content-center gap-1" aria-current="page" href="trgen.html"><i
-                                class="bi bi-truck"></i>Truck Roll</a>
-                    </li>
-                    <li class="nav-item smitem">
-                        <a class="nav-link justify-content-center gap-1">TBD</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col mainnotes" style="padding: 1rem; padding-top: 1rem">
-                <div class="row" style="height: 80vh;">
-                    <div class="mt-3 col-8">
+   <div class="container-fluid main" style="padding: 0px;">
+      <div class="container-fluid cont-top">
+         <div class="d-flex align-items-center">
+            <img src="Assets/ezgif.com-crop.gif" style="width: 75px; height: 50px;">
+            <a class="navbar-brand pageTitle" href="#">Note Generator</a>
+         </div>
+      </div>
+      <div class="container-fluid row mainrow" style="min-width: 100vh; min-height: 90vh;">
+         <div class="sidemenu">
+            <ul class="navbar-nav nav-fill mb-lg-0 smcont mt-4">
+               <li class="nav-item smitem">
+                  <a class="nav-link active justify-content-center gap-1" href="index.html"><i
+                        class="bi bi-journal-check"></i>Case</a>
+               </li>
+               <li class="nav-item smitem">
+                  <a class="nav-link justify-content-center gap-1" aria-current="page" href="trgen.html"><i
+                        class="bi bi-truck"></i>Truck Roll</a>
+               </li>
+               <li class="nav-item smitem">
+                  <a class="nav-link justify-content-center gap-1">TBD</a>
+               </li>
+            </ul>
+         </div>
+         <div class="col mainnotes" style="padding: 1rem; padding-top: 1rem">
+            <div class="row" style="height: 80vh;">
+               <div class="mt-3 col-8">
 
-                        <!-- //T2 Type buttons -->
+                  <!-- //T2 Type buttons -->
 
-                        <div class="row mb-4" style="display: flexbox; justify-content:center; align-items:center ">
-                            <div>
-                                <div class="d-flex gap-5 mb-1" role="group" id="t2TypeGroup">
-                                    <input type="radio" class="btn-check" name="btnT2Type" id="npsCase"
-                                        data-line="T2 NPS Case Review" autocomplete="off" checked>
-                                    <label class="btn btnRadioType" for="npsCase">NPS Case</label></input>
-                                    <input type="radio" class="btn-check" name="btnT2Type" id="trAudit"
-                                        data-line="T2 Truck Roll Audit Review" autocomplete="off">
-                                    <label class="btn btnRadioType" for="trAudit">TR Audit</label></input>
-                                    <input type="radio" class="btn-check" name="btnT2Type" id="t2Chat"
-                                        data-line="T2 Support Request review (Chat)" autocomplete="off">
-                                    <label class="btn btnRadioType" for="t2Chat">T2 Chat Support</label></input>
-                                </div>
-                            </div>
+                  <div class="row mb-4" style="display: flexbox; justify-content:center; align-items:center ">
+                     <div>
+                        <div class="d-flex gap-5 mb-1" role="group" id="t2TypeGroup">
+                           <input type="radio" class="btn-check" name="btnT2Type" id="npsCase"
+                              data-line="T2 NPS Case Review" autocomplete="off" checked>
+                           <label class="btn btnRadioType" for="npsCase">NPS Case</label></input>
+                           <input type="radio" class="btn-check" name="btnT2Type" id="trAudit"
+                              data-line="T2 Truck Roll Audit Review" autocomplete="off">
+                           <label class="btn btnRadioType" for="trAudit">TR Audit</label></input>
+                           <input type="radio" class="btn-check" name="btnT2Type" id="t2Chat"
+                              data-line="T2 Support Request review (Chat)" autocomplete="off">
+                           <label class="btn btnRadioType" for="t2Chat">T2 Chat Support</label></input>
                         </div>
+                     </div>
+                  </div>
 
-                        <div>
-                            <div class="d-flex col-4">
-                                <div class="input-group">
-                                    <div class="form-floating caseNumField">
-                                        <input type="text" class="form-control" placeholder="Case #" id="caseNum">
-                                        <label for="caseNum" style="font-size: smaller; padding: 0.59rem 0.5rem;">Case
-                                            #:</label>
-                                    </div>
-                                    <button type="button" class="btn btnSwitch-Res" data-bs-toggle="button" id="btnRes"
-                                        name="btnRes">Resolved</button>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="btn-group col-4 mt-3" role="group" id="t2SubtypeGroup">
-                                    <input type="radio" class="btn-check" name="btnSubtype" id="tsCase" data-line=""
-                                        autocomplete="off">
-                                    <label class="btn btn-sm btnRadioType btnSubtype" for="tsCase">Tech
-                                        Support</label></input>
-                                    <input type="radio" class="btn-check" name="btnSubtype" id="csCase" data-line=""
-                                        autocomplete="off">
-                                    <label class="btn btn-sm btnRadioType btnSubtype" for="csCase">Cx
-                                        Service</label></input>
-                                    <input type="radio" class="btn-check" name="btnSubtype" id="fieldST" data-line=""
-                                        autocomplete="off">
-                                    <label class="btn btn-sm btnRadioType btnSubtype" for="fieldST">FST</label></input>
-                                </div>
-                            </div>
-
-                            <div class="subtypeMenuArea" id="subtypeMenuArea">
-                                <div class="subtypeMenuArea-inner">
-                                    <div class="subtypeMenuArea-box">
-                                        <div class="subtypeMenu" id="tsMenu">
-                                            <div class="subtypeMenu-inner">
-                                                <div class="subtypeMenu-content p-3">
-                                                    <div class="mb-2">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            id="tsDetail" placeholder="TBD">
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="tsCheck1">
-                                                        <label class="form-check-label" for="tsCheck1">TBD</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="tsCheck2">
-                                                        <label class="form-check-label" for="tsCheck2">TBD</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="subtypeMenu" id="csMenu">
-                                            <div class="subtypeMenu-inner">
-                                                <div class="subtypeMenu-content p-3">
-                                                    <div class="mb-2">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            id="csDetail" placeholder="TBD">
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="csCheck1">
-                                                        <label class="form-check-label" for="csCheck1">TBD</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="csCheck2">
-                                                        <label class="form-check-label" for="csCheck2">TBD</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="subtypeMenu" id="ftMenu">
-                                            <div class="subtypeMenu-inner">
-                                                <div class="subtypeMenu-content p-3">
-                                                    <div class="mb-2">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            id="ftDetail" placeholder="TBD">
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="ftCheck1">
-                                                        <label class="form-check-label" for="ftCheck1">TBD</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="ftCheck2">
-                                                        <label class="form-check-label" for="ftCheck2">TBD</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                  <div>
+                     <div class="d-flex col-4">
+                        <div class="input-group">
+                           <div class="form-floating caseNumField">
+                              <input type="text" class="form-control" placeholder="Case #" id="caseNum">
+                              <label for="caseNum" style="font-size: smaller; padding: 0.59rem 0.5rem;">Case
+                                 #:</label>
+                           </div>
+                           <button type="button" class="btn btnSwitch-Res" data-bs-toggle="button" id="btnRes"
+                              name="btnRes">Resolved</button>
                         </div>
+                     </div>
+                     <div>
+                        <div class="btn-group col-4 mt-3" role="group" id="t2SubtypeGroup">
+                           <input type="radio" class="btn-check" name="btnSubtype" id="tsCase" data-line=""
+                              autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype" for="tsCase">Tech
+                              Support</label></input>
+                           <input type="radio" class="btn-check" name="btnSubtype" id="csCase" data-line=""
+                              autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype" for="csCase">Cx
+                              Service</label></input>
+                           <input type="radio" class="btn-check" name="btnSubtype" id="fieldST" data-line=""
+                              autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype" for="fieldST">FST</label></input>
+                        </div>
+                     </div>
 
-                        <form>
-                            <div class="mt-4">
-                                <label for="inputIssue" class="form-label areaLabel col-2">Resolution</label>
-                                <div class="mb-3 align-items-center">
-                                    <div class="w-50">
-                                        <textarea type="text" class="form-control textArea" id="inputIssue"
-                                            placeholder="Type a short description of the issue." rows="16"></textarea>
+                     <div class="subtypeMenuArea" id="subtypeMenuArea">
+                        <div class="subtypeMenuArea-inner">
+                           <div class="subtypeMenuArea-box">
+                              <div class="subtypeMenu" id="tsMenu">
+                                 <div class="subtypeMenu-inner">
+                                    <div class="subtypeMenu-content p-3">
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="tsCheck1">
+                                          <label class="form-check-label" for="tsCheck1">TBD</label>
+                                       </div>
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="tsCheck2">
+                                          <label class="form-check-label" for="tsCheck2">TBD</label>
+                                       </div>
+                                       <div class="col-6">
+                                          <div class="d-flex gap-2" style="align-items: center;">
+                                             <button type="button" class="btnSwitch btnGenFunc gap-1"
+                                                id="btnPasteOntLght">
+                                                <span class="genSpan" for="btnPasteOntLght">Modem LL</span>
+                                                <i class="bi bi-clipboard2-plus"></i>
+                                                <i class="bi bi-caret-right"
+                                                   style="margin-left: -0.5rem; margin-bottom: -0.14rem; font-size: small;"></i>
+                                             </button>
+                                             <div class="input-group input-group-sm">
+                                                <span class="input-group-text lblNoWrap" for="oltRx">OLT</span>
+                                                <input type="text" class="form-control form-control-sm" id="oltRx"
+                                                   placeholder="">
+                                             </div>
+                                             <div class="input-group input-group-sm">
+                                                <span class="input-group-text lblNoWrap" for="ontRx">ONT</span>
+                                                <input type="text" class="form-control form-control-sm" id="ontRx"
+                                                   placeholder="">
+                                             </div>
+                                          </div>
+                                       </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="mt-3">
-                                <button type="button" class="btn btnMain1" id="genBut"
-                                    style="margin-bottom: 10px;">Generate</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-4 d-flex flex-column">
-                        <textarea class="flex-grow-1" id="generatedNote">
+                                 </div>
+                              </div>
+
+                              <div class="subtypeMenu" id="csMenu">
+                                 <div class="subtypeMenu-inner">
+                                    <div class="subtypeMenu-content p-3">
+                                       <div class="mb-2">
+                                          <input type="text" class="form-control form-control-sm" id="csDetail"
+                                             placeholder="TBD">
+                                       </div>
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="csCheck1">
+                                          <label class="form-check-label" for="csCheck1">TBD</label>
+                                       </div>
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="csCheck2">
+                                          <label class="form-check-label" for="csCheck2">TBD</label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="subtypeMenu" id="ftMenu">
+                                 <div class="subtypeMenu-inner">
+                                    <div class="subtypeMenu-content p-3">
+                                       <div class="mb-2">
+                                          <input type="text" class="form-control form-control-sm" id="ftDetail"
+                                             placeholder="TBD">
+                                       </div>
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="ftCheck1">
+                                          <label class="form-check-label" for="ftCheck1">TBD</label>
+                                       </div>
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="ftCheck2">
+                                          <label class="form-check-label" for="ftCheck2">TBD</label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <form>
+                     <div class="mt-4">
+                        <label for="inputIssue" class="form-label areaLabel col-2">Resolution</label>
+                        <div class="mb-3 align-items-center">
+                           <div class="w-50">
+                              <textarea type="text" class="form-control textArea" id="inputIssue"
+                                 placeholder="Type a short description of the issue." rows="16"></textarea>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="mt-3">
+                        <button type="button" class="btn btnMain1" id="genBut"
+                           style="margin-bottom: 10px;">Generate</button>
+                     </div>
+                  </form>
+               </div>
+               <div class="col-4 d-flex flex-column">
+                  <textarea class="flex-grow-1" id="generatedNote">
 T2 NPS Case Review
 
 Case #: 
@@ -186,27 +202,29 @@ Resolved
 Resolution:
 
                         </textarea>
-                        <div class="container">
-                            <div class="row justify-content-between">
-                                <div class="col-4"><button type="button" class="btn btnMain1 w-100"
-                                        id="copyNote">Copy</button></div>
-                                <div class="col-4"><button type="button" class="btn btnMain1 w-100"
-                                        id="clearAll">Clear</button></div>
-                            </div>
+                  <div class="container">
+                     <div class="row justify-content-between">
+                        <div class="col-4"><button type="button" class="btn btnMain1 w-100" id="copyNote">Copy</button>
                         </div>
-                    </div>
-                </div>
+                        <div class="col-4"><button type="button" class="btn btnMain1 w-100" id="clearAll">Clear</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
-    <script src="js/tsnotes.js">
-        // wait for five-server to connect
-        const five = document.querySelector('[data-id="five-server"]');
-        if (five) five.addEventListener("connected", main);
-        else window.addEventListener("load", main);
-    </script>
+   <div id="pasteToast" class="paste-toast" role="alert" aria-live="polite">Paste failed</div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
+   <script src="js/tsnotes.js">
+      // wait for five-server to connect
+      const five = document.querySelector('[data-id="five-server"]');
+      if (five) five.addEventListener("connected", main);
+      else window.addEventListener("load", main);
+   </script>
 
 </body>
 

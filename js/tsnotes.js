@@ -116,3 +116,74 @@ copyOutNote.addEventListener('click', function () {
             });
     }
 });
+
+// Modem light-level paste: read the clipboard, detect which of the 3 tool
+// formats it is, and drop the OLT/ONT Rx levels into their fields.
+
+var btnPasteOntLght = document.getElementById('btnPasteOntLght');
+var oltRxField = document.getElementById('oltRx');
+var ontRxField = document.getElementById('ontRx');
+
+function parseLightLevels(text) {
+    // #2 SMX — "Rx Lvl dBm (OLT/ONT):-26.000/-19.208"
+    var smx = text.match(/\(OLT\/ONT\):\s*(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/i);
+    if (smx) return { olt: smx[1], ont: smx[2] };
+
+    // #3 Provisioning/Field Tool — "OLT Rx Power: 0.0dBm" / "ONT Rx Power: 0.0dBm"
+    var ftOlt = text.match(/OLT Rx Power:\s*(-?\d+(?:\.\d+)?)/i);
+    var ftOnt = text.match(/ONT Rx Power:\s*(-?\d+(?:\.\d+)?)/i);
+    if (ftOlt || ftOnt) return { olt: ftOlt && ftOlt[1], ont: ftOnt && ftOnt[1] };
+
+    // #1 Altiplano — value sits on the line after each label; the "RX" in the
+    // ONT pattern is what excludes the TX line we intentionally leave copied.
+    var altOlt = text.match(/Measured at OLT\)\s*(-?\d+(?:\.\d+)?)/i);
+    var altOnt = text.match(/RX signal level \(Measured at ONT\)\s*(-?\d+(?:\.\d+)?)/i);
+    if (altOlt || altOnt) return { olt: altOlt && altOlt[1], ont: altOnt && altOnt[1] };
+
+    return { olt: null, ont: null };
+}
+
+// Flash a check (ok) or X (fail) inside a field, then clear it after a moment.
+function setFieldStatus(field, ok) {
+    var group = field.closest('.input-group');
+    if (!group) return;
+    group.classList.remove('paste-ok', 'paste-fail');
+    group.classList.add(ok ? 'paste-ok' : 'paste-fail');
+    setTimeout(function () {
+        group.classList.remove('paste-ok', 'paste-fail');
+    }, 2500);
+}
+
+// Global toast for when a paste doesn't yield any usable levels.
+var pasteToast = document.getElementById('pasteToast');
+var pasteToastTimer;
+
+function showPasteToast(message) {
+    if (!pasteToast) return;
+    pasteToast.textContent = message;
+    pasteToast.classList.add('show');
+    clearTimeout(pasteToastTimer);
+    pasteToastTimer = setTimeout(function () {
+        pasteToast.classList.remove('show');
+    }, 3000);
+}
+
+btnPasteOntLght.addEventListener('click', function () {
+    navigator.clipboard.readText()
+        .then(function (text) {
+            var levels = parseLightLevels(text);
+            if (levels.olt != null) oltRxField.value = levels.olt + ' dBm';
+            if (levels.ont != null) ontRxField.value = levels.ont + ' dBm';
+            setFieldStatus(oltRxField, levels.olt != null);
+            setFieldStatus(ontRxField, levels.ont != null);
+            if (levels.olt == null && levels.ont == null) {
+                showPasteToast('Paste failed');
+            }
+        })
+        .catch(function (error) {
+            console.error('Could not read clipboard:', error);
+            setFieldStatus(oltRxField, false);
+            setFieldStatus(ontRxField, false);
+            showPasteToast('Paste failed');
+        });
+});
