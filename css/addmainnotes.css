@@ -93,6 +93,22 @@ body {
    transition: background-color 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease;
 }
 
+.spanGenGroup {
+   border: 1px black solid;
+   border-radius: 0.3rem;
+}
+
+.txtGenFieldGrp {
+   border: 1px black solid;
+}
+
+.spanLIndiv {
+   border: 1px black solid;
+   border-right: 0;
+   box-shadow: 3px 0 3px -2px rgba(0, 0, 0, 0.308);
+   z-index: 7;
+}
+
 .btnGenFunc:hover {
    background-color: #5cc5007c;
 }
@@ -236,6 +252,10 @@ a.nav-link:hover {
    font-size: small !important;
 }
 
+#popCarousel {
+   width: 350px;
+}
+
 /* Light-level paste validation icons (overlaid inside the OLT/ONT fields) */
 
 .input-group:has(#oltRx),
@@ -270,7 +290,7 @@ a.nav-link:hover {
    color: #dc3545;
 }
 
-/* Global "Paste failed" toast, pinned to the bottom-center of the viewport */
+/* Global "Paste failed" toast */
 
 .paste-toast {
    position: fixed;

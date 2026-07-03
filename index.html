@@ -101,16 +101,26 @@
                               <div class="subtypeMenu" id="tsMenu">
                                  <div class="subtypeMenu-inner">
                                     <div class="subtypeMenu-content p-3">
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="tsCheck1">
-                                          <label class="form-check-label" for="tsCheck1">TBD</label>
-                                       </div>
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="tsCheck2">
-                                          <label class="form-check-label" for="tsCheck2">TBD</label>
+                                       <div class="d-flex mb-2 gap-1">
+                                          <input class="btn-check" name="techSubtype" type="radio" id="techRadioBtn1"
+                                             data-line="Outage/Hard Down">
+                                          <label class="btn btn-sm btnRadioType btnSubtype"
+                                             for="techRadioBtn1">Outage/HD</label></input>
+                                          <input class="btn-check" name="techSubtype" type="radio" id="techRadioBtn2"
+                                             data-line="Router/Coverage or Speeds">
+                                          <label class="btn btn-sm btnRadioType btnSubtype"
+                                             for="techRadioBtn2">Router/Wi-fi</label></input>
+                                          <input class="btn-check" name="techSubtype" type="radio" id="techRadioBtn3"
+                                             data-line="Issues connecting a single device">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="techRadioBtn3">Single
+                                             Device issue</label></input>
                                        </div>
                                        <div class="col-6">
                                           <div class="d-flex gap-2" style="align-items: center;">
+                                             <i class="bi bi-question-circle" data-bs-toggle="popover"
+                                                data-bs-placement="bottom" data-boundary=".mainnotes"
+                                                data-hoverable="true" data-content-template="#popCarouselTemplate">
+                                             </i>
                                              <button type="button" class="btnSwitch btnGenFunc gap-1"
                                                 id="btnPasteOntLght">
                                                 <span class="genSpan" for="btnPasteOntLght">Modem LL</span>
@@ -119,14 +129,16 @@
                                                    style="margin-left: -0.5rem; margin-bottom: -0.14rem; font-size: small;"></i>
                                              </button>
                                              <div class="input-group input-group-sm">
-                                                <span class="input-group-text lblNoWrap" for="oltRx">OLT</span>
-                                                <input type="text" class="form-control form-control-sm" id="oltRx"
-                                                   placeholder="">
+                                                <span class="input-group-text lblNoWrap spanLIndiv"
+                                                   for="oltRx">OLT</span>
+                                                <input type="text" class="form-control form-control-sm txtGenFieldGrp"
+                                                   id="oltRx" placeholder="" style="z-index: 5;">
                                              </div>
                                              <div class="input-group input-group-sm">
-                                                <span class="input-group-text lblNoWrap" for="ontRx">ONT</span>
-                                                <input type="text" class="form-control form-control-sm" id="ontRx"
-                                                   placeholder="">
+                                                <span class="input-group-text lblNoWrap spanLIndiv"
+                                                   for="ontRx">ONT</span>
+                                                <input type="text" class="form-control form-control-sm txtGenFieldGrp"
+                                                   id="ontRx" placeholder="">
                                              </div>
                                           </div>
                                        </div>
@@ -217,6 +229,27 @@ Resolution:
    </div>
 
    <div id="pasteToast" class="paste-toast" role="alert" aria-live="polite">Paste failed</div>
+
+   <template id="popCarouselTemplate">
+      <div id="popCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <div class="p-4 text-center">Slide 1</div>
+            </div>
+            <div class="carousel-item">
+               <div class="p-4 text-center">Slide 2</div>
+            </div>
+         </div>
+         <button class="carousel-control-prev" type="button" data-bs-target="#popCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#popCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+         </button>
+      </div>
+   </template>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
    <script src="js/tsnotes.js">
