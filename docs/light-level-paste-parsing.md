@@ -1,14 +1,14 @@
 # Modem Light-Level Paste Button — How It Works
 
 The "Modem LL" button (`#btnPasteOntLght`) lets a Tier 2 agent copy raw light-
-level output from any of three tools, click once, and have the OLT and ONT Rx
+level output from any of four tools, click once, and have the OLT and ONT Rx
 levels land in the two fields next to it (`#oltRx`, `#ontRx`) — always the same
 end result regardless of which tool the text came from. Logic lives in
 [js/tsnotes.js](../js/tsnotes.js).
 
 ## The goal
 
-- One button, three possible input formats, one consistent output.
+- One button, four possible input formats, one consistent output.
 - Extract exactly two numbers — **OLT Rx** and **ONT Rx** — and ignore
   everything else (notably Altiplano's TX line).
 - Append ` dBm` units so the fields read like `-18.5 dBm`.
@@ -40,10 +40,15 @@ apart by a **distinctive substring** that only that format contains:
 |---|---|---|
 | SMX | `(OLT/ONT):` | `Rx Lvl dBm (OLT/ONT):-26.000/-19.208` |
 | Field Tool | `OLT Rx Power:` | `OLT Rx Power: 0.0dBm` |
+| Modem | `OLT Rx` + tab/space + number | `OLT Rx␉-16.9 dBm` |
 | Altiplano | `Measured at OLT` / `Measured at ONT` | multi-line block |
 
-Because each signature is unique, the checks can run in any order without one
-format's text accidentally matching another's pattern.
+The signatures are unique **except** that the Modem label (`OLT Rx`) is a prefix
+of the Field Tool label (`OLT Rx Power:`). The Modem pattern requires
+whitespace-then-a-number right after `OLT Rx`, which the Field Tool's `Power:`
+breaks — but to be safe the Field Tool check still runs first and returns early,
+so its text never reaches the Modem pattern. The other checks can run in any
+order.
 
 ## Step 3 — the regex extraction
 
@@ -81,6 +86,30 @@ text.match(/ONT Rx Power:\s*(-?\d+(?:\.\d+)?)/i)
 Straightforward: match the label, `\s*` to skip any spaces, capture the number.
 (`0.0dBm` has no space before the unit — `\s*` allows zero spaces, so it still
 matches; we capture just `0.0` and stop before `dBm`.)
+
+### Modem — tab-separated label and value
+
+```
+OLT Rx␉-16.9 dBm
+ONT Rx␉-15.5 dBm
+```
+
+```js
+text.match(/OLT Rx\s+(-?\d+(?:\.\d+)?)/i)
+text.match(/ONT Rx\s+(-?\d+(?:\.\d+)?)/i)
+```
+
+Same idea as the Field Tool, with two differences that matter:
+
+- **`\s+`, not `\s*`.** The label here is only `OLT Rx` — a *prefix* of the
+  Field Tool's `OLT Rx Power:`. Requiring at least one whitespace character
+  (`\s+`) followed immediately by a number means this pattern can't match
+  `OLT Rx Power: 0.0` (after `Rx` comes `Power:`, not whitespace-then-a-number).
+  Combined with the Field Tool check running first, the two formats stay cleanly
+  separated.
+- **The whitespace is usually a tab.** Copying from the tool's table pastes a
+  tab between label and value; `\s` matches tabs, spaces, and newlines alike, so
+  no special handling is needed.
 
 ### Altiplano — value on the *next* line, and the TX trap
 

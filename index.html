@@ -231,23 +231,34 @@ Resolution:
    <div id="pasteToast" class="paste-toast" role="alert" aria-live="polite">Paste failed</div>
 
    <template id="popCarouselTemplate">
-      <div id="popCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div id="popCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" style="overflow: block;">
          <div class="carousel-inner">
             <div class="carousel-item active">
-               <div class="p-4 text-center">Slide 1</div>
+               <div class="text-center">Slide 1</div>
+               <img class="img-fluid object-fit-contain" src="Assets\Alti.png" alt="...">
             </div>
             <div class="carousel-item">
-               <div class="p-4 text-center">Slide 2</div>
+               <div class="text-center">Slide 2</div>
+               <img class="img-fluid object-fit-scale" src="Assets/smx.png" alt="...">
             </div>
+            <div class="carousel-item">
+               <div class="text-center">Slide 3</div>
+               <img class="img-fluid object-fit-scale" src="Assets/fieldtac.png" alt="...">
+            </div>
+            <div class="carousel-item">
+               <div class="text-center">Slide 4</div>
+               <img class="img-fluid object-fit-scale" src="Assets/provtac.png" alt="...">
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#popCarousel" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#popCarousel" data-bs-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Next</span>
+            </button>
          </div>
-         <button class="carousel-control-prev" type="button" data-bs-target="#popCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-         </button>
-         <button class="carousel-control-next" type="button" data-bs-target="#popCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-         </button>
+
       </div>
    </template>
 

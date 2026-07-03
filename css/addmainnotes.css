@@ -254,6 +254,7 @@ a.nav-link:hover {
 
 #popCarousel {
    width: 350px;
+   height:100px
 }
 
 /* Light-level paste validation icons (overlaid inside the OLT/ONT fields) */

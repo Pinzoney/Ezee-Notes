@@ -187,7 +187,7 @@ function formatLightLevels(levels) {
    return olt + ' / ' + ont + ' dBm';
 }
 
-// Modem light-level paste: read the clipboard, detect which of the 3 tool
+// Modem light-level paste: read the clipboard, detect which of the 4 tool
 // formats it is, and drop the OLT/ONT Rx levels into their fields.
 
 var btnPasteOntLght = document.getElementById('btnPasteOntLght');
@@ -199,13 +199,17 @@ function parseLightLevels(text) {
    var smx = text.match(/\(OLT\/ONT\):\s*(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/i);
    if (smx) return { olt: smx[1], ont: smx[2] };
 
-   // #3 Provisioning/Field Tool — "OLT Rx Power: 0.0dBm" / "ONT Rx Power: 0.0dBm"
-   var ftOlt = text.match(/OLT Rx Power:\s*(-?\d+(?:\.\d+)?)/i);
-   var ftOnt = text.match(/ONT Rx Power:\s*(-?\d+(?:\.\d+)?)/i);
+   // #3 Provisioning/Field.tac "OLT Rx Power: 0.0dBm" / "ONT Rx Power: 0.0dBm"
+   var ftOlt = text.match(/OLT Rx(?: Power)?:?\s*(-?\d+(?:\.\d+)?)/i);
+   var ftOnt = text.match(/ONT Rx(?: Power)?:?\s*(-?\d+(?:\.\d+)?)/i);
    if (ftOlt || ftOnt) return { olt: ftOlt && ftOlt[1], ont: ftOnt && ftOnt[1] };
 
-   // #1 Altiplano — value sits on the line after each label; the "RX" in the
-   // ONT pattern is what excludes the TX line we intentionally leave copied.
+s
+   /* // #1 Altiplano — Format: 
+RX signal Level (Measured at OLT) -15.8 dBm
+TX signal level (Measured at ONT)  5.6 dBm
+RX signal level (Measured at ONT) -16.5 dBm */
+
    var altOlt = text.match(/Measured at OLT\)\s*(-?\d+(?:\.\d+)?)/i);
    var altOnt = text.match(/RX signal level \(Measured at ONT\)\s*(-?\d+(?:\.\d+)?)/i);
    if (altOlt || altOnt) return { olt: altOlt && altOlt[1], ont: altOnt && altOnt[1] };
