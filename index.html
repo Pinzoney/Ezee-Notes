@@ -80,38 +80,42 @@
                         </div>
                      </div>
                      <div>
-                        <div class="btn-group col-4 mt-3" role="group" id="t2SubtypeGroup">
+                        <div class="btn-group col-4 mt-3" role="group" id="npsSubtypeGroup">
                            <input type="radio" class="btn-check" name="btnSubtype" id="tsCase" data-line=""
-                              autocomplete="off">
-                           <label class="btn btn-sm btnRadioType btnSubtype" for="tsCase">Tech
+                              data-menu-target="ts" autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="tsCase">Tech
                               Support</label></input>
                            <input type="radio" class="btn-check" name="btnSubtype" id="csCase" data-line=""
-                              autocomplete="off">
-                           <label class="btn btn-sm btnRadioType btnSubtype" for="csCase">Cx
+                              data-menu-target="cs" autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="csCase">Cx
                               Service</label></input>
                            <input type="radio" class="btn-check" name="btnSubtype" id="fieldST" data-line=""
-                              autocomplete="off">
-                           <label class="btn btn-sm btnRadioType btnSubtype" for="fieldST">FST</label></input>
+                              data-menu-target="ft" autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab"
+                              for="fieldST">FST</label></input>
                         </div>
                      </div>
 
-                     <div class="subtypeMenuArea" id="subtypeMenuArea">
+                     <div class="subtypeMenuArea" id="npsSubMenuArea">
                         <div class="subtypeMenuArea-inner">
                            <div class="subtypeMenuArea-box">
-                              <div class="subtypeMenu" id="tsMenu">
+                              <div class="subtypeMenu" id="tsMenu" data-menu="ts">
                                  <div class="subtypeMenu-inner">
                                     <div class="subtypeMenu-content p-3">
                                        <div class="d-flex mb-2 gap-1">
                                           <input class="btn-check" name="techSubtype" type="radio" id="techRadioBtn1"
-                                             data-line="Outage/Hard Down">
+                                             data-line="Outage/Hard Down" data-note-prefix="Reason: "
+                                             data-note-group="subtype">
                                           <label class="btn btn-sm btnRadioType btnSubtype"
                                              for="techRadioBtn1">Outage/HD</label></input>
                                           <input class="btn-check" name="techSubtype" type="radio" id="techRadioBtn2"
-                                             data-line="Router/Coverage or Speeds">
+                                             data-line="Router/Coverage or Speeds" data-note-prefix="Reason: "
+                                             data-note-group="subtype">
                                           <label class="btn btn-sm btnRadioType btnSubtype"
                                              for="techRadioBtn2">Router/Wi-fi</label></input>
                                           <input class="btn-check" name="techSubtype" type="radio" id="techRadioBtn3"
-                                             data-line="Issues connecting a single device">
+                                             data-line="Issues connecting a single device" data-note-prefix="Reason: "
+                                             data-note-group="subtype">
                                           <label class="btn btn-sm btnRadioType btnSubtype" for="techRadioBtn3">Single
                                              Device issue</label></input>
                                        </div>
@@ -119,7 +123,8 @@
                                           <div class="d-flex gap-2" style="align-items: center;">
                                              <i class="bi bi-question-circle" data-bs-toggle="popover"
                                                 data-bs-placement="bottom" data-boundary=".mainnotes"
-                                                data-hoverable="true" data-content-template="#popCarouselTemplate">
+                                                data-hoverable="true" data-content-template="#popCarouselTemplate"
+                                                data-bs-custom-class="popWide">
                                              </i>
                                              <button type="button" class="btnSwitch btnGenFunc gap-1"
                                                 id="btnPasteOntLght">
@@ -145,41 +150,147 @@
                                     </div>
                                  </div>
                               </div>
-
-                              <div class="subtypeMenu" id="csMenu">
+                              <div class="subtypeMenu" id="csMenu" data-menu="cs">
                                  <div class="subtypeMenu-inner">
                                     <div class="subtypeMenu-content p-3">
                                        <div class="mb-2">
+                                          <input class="btn-check" name="cxSubtype" type="radio" id="cxRadioBtn1"
+                                             data-line="Unhappy with their appointment time/day"
+                                             data-note-prefix="Cause: " data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="cxRadioBtn1">WO
+                                             Time/Date</label></input>
+                                          <input class="btn-check" name="cxSubtype" type="radio" id="cxRadioBtn2"
+                                             data-line="Credits/Discount not applied" data-note-prefix="Cause: "
+                                             data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype"
+                                             for="cxRadioBtn2">Credit/Discount</label></input>
+                                          <input class="btn-check" name="cxSubtype" type="radio" id="cxRadioBtn3"
+                                             data-line="Escalated but never called back" data-note-prefix="Cause: "
+                                             data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype"
+                                             for="cxRadioBtn3">Escalation</label></input>
+                                          <input class="btn-check" name="cxSubtype" type="radio" id="cxRadioBtn4"
+                                             data-line="Unhappy with Result" data-note-prefix="Cause: "
+                                             data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="cxRadioBtn4">Gen.
+                                             Complaint</label></input>
+                                       </div>
+                                       <div class=" mb-2">
                                           <input type="text" class="form-control form-control-sm" id="csDetail"
                                              placeholder="TBD">
-                                       </div>
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="csCheck1">
-                                          <label class="form-check-label" for="csCheck1">TBD</label>
-                                       </div>
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="csCheck2">
-                                          <label class="form-check-label" for="csCheck2">TBD</label>
                                        </div>
                                     </div>
                                  </div>
                               </div>
-
-                              <div class="subtypeMenu" id="ftMenu">
+                              <div class="subtypeMenu" id="ftMenu" data-menu="ft">
                                  <div class="subtypeMenu-inner">
                                     <div class="subtypeMenu-content p-3">
                                        <div class="mb-2">
-                                          <input type="text" class="form-control form-control-sm" id="ftDetail"
-                                             placeholder="TBD">
+                                          <input class="btn-check" name="fstSubtype" type="radio" id="fstRadioBtn1"
+                                             data-line="" data-note-prefix="" data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn1">TBD
+                                             1</label></input>
+                                          <input class="btn-check" name="fstSubtype" type="radio" id="fstRadioBtn2"
+                                             data-line="" data-note-prefix="" data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn2">TBD
+                                             2</label></input>
+                                          <input class="btn-check" name="fstSubtype" type="radio" id="fstRadioBtn3"
+                                             data-line="" data-note-prefix="" data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn3">TBD
+                                             3</label></input>
+                                          <input class="btn-check" name="fstSubtype" type="radio" id="fstRadioBtn4"
+                                             data-line="" data-note-prefix="" data-note-group="subtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn4">TBD
+                                             4</label></input>
                                        </div>
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="ftCheck1">
-                                          <label class="form-check-label" for="ftCheck1">TBD</label>
+                                       <div class="input-group mb-2">
+                                          <span class="input-group-text lblNoWrap spanLIndiv" for="fstText">TBD</span>
+                                          <input type="text" class="form-control form-control-sm txtGenFieldGrp"
+                                             id="fstText" placeholder="" style="z-index: 5;">
                                        </div>
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="ftCheck2">
-                                          <label class="form-check-label" for="ftCheck2">TBD</label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="btn-group col-4 mt-3" role="group" id="traSubtypeGroup">
+                        <input type="radio" class="btn-check" name="traSubtypeBtn" id="traSubtype1"
+                           data-line="TRA Subtype 1" data-menu-target="tr1" autocomplete="off">
+                        <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="traSubtype1">TRA
+                           1</label></input>
+                        <input type="radio" class="btn-check" name="traSubtypeBtn" id="traSubtype2"
+                           data-line="TRA Subtype 2" data-menu-target="tr2" autocomplete="off">
+                        <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="traSubtype2">TRA
+                           2</label></input>
+                        <input type="radio" class="btn-check" name="traSubtypeBtn" id="traSubtype3"
+                           data-line="TRA Subtype 3" data-menu-target="tr3" autocomplete="off">
+                        <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="traSubtype3">TRA
+                           3</label></input>
+                     </div>
+
+                     <div class="subtypeMenuArea" id="trSubMenuArea">
+                        <div class="subtypeMenuArea-inner">
+                           <div class="subtypeMenuArea-box">
+                              <div class="subtypeMenu" id="trSub1" data-menu="tr1">
+                                 <div class="subtypeMenu-inner">
+                                    <div class="subtypeMenu-content p-3">
+                                       <div class="d-flex mb-2 gap-1">
+                                          <input class="btn-check" name="trSubBtn" type="radio" id="trSubBtn1"
+                                             data-line="TBD" data-note-prefix="Reason: " data-note-group="trsubtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn1">TBD
+                                             1</label></input>
+                                          <input class="btn-check" name="trSubBtn" type="radio" id="trSubBtn2"
+                                             data-line="TBD" data-note-prefix="Reason: " data-note-group="trsubtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn2">TBD
+                                             2</label></input>
+                                          <input class="btn-check" name="trSubBtn" type="radio" id="trSubBtn3"
+                                             data-line="TBD" data-note-prefix="Reason: " data-note-group="trsubtype">
+                                          <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn3">TBD 3
+                                          </label></input>
                                        </div>
+
+                                       <div class="col-6">
+                                          <div class="d-flex gap-2" style="align-items: center;">
+                                             <i class="bi bi-question-circle" data-bs-toggle="popover"
+                                                data-bs-placement="bottom" data-boundary=".mainnotes"
+                                                data-hoverable="true" data-content-template="#popCarouselTemplate"
+                                                data-bs-custom-class="popWide">
+                                             </i>
+                                             <button type="button" class="btnSwitch btnGenFunc gap-1"
+                                                id="btnTRPasteOntLght">
+                                                <span class="genSpan" for="btnTRPasteOntLght">Modem LL</span>
+                                                <i class="bi bi-clipboard2-plus"></i>
+                                                <i class="bi bi-caret-right"
+                                                   style="margin-left: -0.5rem; margin-bottom: -0.14rem; font-size: small;"></i>
+                                             </button>
+                                             <div class="input-group input-group-sm">
+                                                <span class="input-group-text lblNoWrap spanLIndiv"
+                                                   for="trOltRx">OLT</span>
+                                                <input type="text" class="form-control form-control-sm txtGenFieldGrp"
+                                                   id="trOltRx" placeholder="" style="z-index: 5;">
+                                             </div>
+                                             <div class="input-group input-group-sm">
+                                                <span class="input-group-text lblNoWrap spanLIndiv"
+                                                   for="trOntRx">ONT</span>
+                                                <input type="text" class="form-control form-control-sm txtGenFieldGrp"
+                                                   id="trOntRx" placeholder="">
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="subtypeMenu" id="trSub2" data-menu="tr2">
+                                 <div class="subtypeMenu-inner">
+                                    <div class="subtypeMenu-content p-3">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="subtypeMenu" id="trSub3" data-menu="tr3">
+                                 <div class="subtypeMenu-inner">
+                                    <div class="subtypeMenu-content p-3">
                                     </div>
                                  </div>
                               </div>
@@ -205,15 +316,17 @@
                   </form>
                </div>
                <div class="col-4 d-flex flex-column">
-                  <textarea class="flex-grow-1" id="generatedNote">
+                  <textarea class="flex-grow-1" id="generatedNote" style="font-size: 15px">
 T2 NPS Case Review
 
 Case #: 
 Resolved
 
-Resolution:
+Reason: 
 
-                        </textarea>
+Light Levels (OLT/ONT): 
+
+Resolution: </textarea>
                   <div class="container">
                      <div class="row justify-content-between">
                         <div class="col-4"><button type="button" class="btn btnMain1 w-100" id="copyNote">Copy</button>
@@ -231,23 +344,23 @@ Resolution:
    <div id="pasteToast" class="paste-toast" role="alert" aria-live="polite">Paste failed</div>
 
    <template id="popCarouselTemplate">
-      <div id="popCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" style="overflow: block;">
+      <div id="popCarousel" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
          <div class="carousel-inner">
             <div class="carousel-item active">
-               <div class="text-center">Slide 1</div>
-               <img class="img-fluid object-fit-contain" src="Assets\Alti.png" alt="...">
+               <div class="text-center" style="font-family: Roboto Condensed">Altiplano</div>
+               <img class="img-fluid" src="Assets\Alti.png" alt="...">
             </div>
             <div class="carousel-item">
-               <div class="text-center">Slide 2</div>
-               <img class="img-fluid object-fit-scale" src="Assets/smx.png" alt="...">
+               <div class="text-center" style="font-family: Roboto Condensed">SMX</div>
+               <img class="img-fluid" src="Assets/smx.png" alt="...">
             </div>
             <div class="carousel-item">
-               <div class="text-center">Slide 3</div>
-               <img class="img-fluid object-fit-scale" src="Assets/fieldtac.png" alt="...">
+               <div class="text-center" style="font-family: Roboto Condensed">Field Tool</div>
+               <img class="img-fluid" src="Assets/fieldtac.png" alt="...">
             </div>
             <div class="carousel-item">
-               <div class="text-center">Slide 4</div>
-               <img class="img-fluid object-fit-scale" src="Assets/provtac.png" alt="...">
+               <div class="text-center" style="font-family: Roboto Condensed">Dave's Tool</div>
+               <img class="img-fluid" src="Assets/provtac.png" alt="...">
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#popCarousel" data-bs-slide="prev">
                <span class="carousel-control-prev-icon" aria-hidden="true"></span>

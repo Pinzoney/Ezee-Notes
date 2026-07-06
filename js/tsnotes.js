@@ -3,7 +3,7 @@ const popoverList = [...popoverTriggerList].map(buildPopover)
 var t2TypeBtns = document.querySelectorAll("input[type=radio][name=btnT2Type]")
 var btnRes = document.querySelector("button[type=button][name=btnRes]")
 var t2TypeGroup = document.getElementById('t2TypeGroup')
-var t2SubtypeGroup = document.getElementById('t2SubtypeGroup')
+var npsSubtypeGroup = document.getElementById('npsSubtypeGroup')
 var caseNumField = document.getElementById('caseNum')
 var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
 var stepsTextArea = document.getElementById('tsSteps')
@@ -119,14 +119,6 @@ btnRes.addEventListener('mouseleave', function () {
    btnRes.textContent = btnRes.classList.contains('active') ? 'FU needed' : 'Resolved'
 });
 
-
-// --- "Sticky" note lines: Reason (tech subtype) + Modem light levels ---
-// Both sit just under the status line (Resolved / Follow-up Needed). They're
-// rebuild-safe because the t2Type/caseNum handlers above keep any line they
-// don't recognise, so we don't have to re-add them on every rebuild — we just
-// upsert them here when their source changes.
-
-var techSubtypeBtns = document.querySelectorAll('input[name="techSubtype"]');
 var REASON_PREFIX = 'Reason: ';
 var LL_PREFIX = 'Light Levels (OLT/ONT): ';
 
@@ -134,17 +126,16 @@ function isStatusLine(line) { return line === 'Resolved' || line === 'Follow-up 
 function isReasonLine(line) { return line.indexOf(REASON_PREFIX) === 0; }
 function isLightLevelLine(line) { return line.indexOf(LL_PREFIX) === 0; }
 
-// Insert / replace / remove a single line identified by its prefix. A new line
-// is dropped right after the first anchor predicate that matches (anchors are
-// tried in order); if it already exists it's replaced in place. A null value
-// removes the line; an empty string ('') leaves just the prefix as a
-// fill-me-in placeholder. Falls back to under the T2 type line if no anchor hits.
 function upsertNoteLine(prefix, value, anchors) {
    var lines = genNote.value.split('\n');
    var existing = lines.findIndex(function (line) { return line.indexOf(prefix) === 0; });
 
    if (value == null) {
-      if (existing !== -1) { lines.splice(existing, 1); genNote.value = lines.join('\n'); }
+      if (existing !== -1) {
+         lines.splice(existing, 1);
+         if (lines[existing] === '') lines.splice(existing, 1);
+         genNote.value = lines.join('\n');
+      }
       return;
    }
 
@@ -156,22 +147,85 @@ function upsertNoteLine(prefix, value, anchors) {
          var idx = lines.findIndex(anchors[i]);
          if (idx !== -1) { at = idx; break; }
       }
-      lines.splice(at + 1, 0, prefix + value);
+      lines.splice(at + 1, 0, '', prefix + value);
    }
    genNote.value = lines.join('\n');
 }
 
-// Picking a tech subtype sets/updates the "Reason:" line under the status line.
-techSubtypeBtns.forEach(function (btn) {
-   btn.addEventListener('change', function () {
-      if (btn.checked) upsertNoteLine(REASON_PREFIX, btn.dataset.line, [isStatusLine]);
-   });
+// --- Declarative note-writing controls ------------------------------------
+// Any control carrying data-note-prefix writes to the note; the button itself
+// declares its behaviour, so adding one is pure HTML — no new JS. Delegated off
+// document, so buttons added later (even generated at runtime) work too.
+//   data-note-prefix="Reason: "   the line's identity (upsert replaces by it)
+//   data-line="..."               the value written after the prefix
+//   data-note-anchor="reason"     optional: where a NEW line is inserted
+//   data-note-group="subtype"     optional: a mutually-exclusive slot. Selecting
+//                                 any control in the group first clears every
+//                                 OTHER prefix in it, so switching to a button
+//                                 with a different prefix replaces the whole
+//                                 line (prefix and all), not just its value.
+// Radios replace their prefix's line on select; checkboxes add on check and
+// remove on uncheck.
+document.addEventListener('change', function (e) {
+   var el = e.target;
+
+   // Tab -> panel: open the menu whose data-menu matches the checked tab's
+   // data-menu-target, and close the rest. One rule for every menu, present or
+   // future; adding a menu is just matching attributes, no new CSS or JS.
+   if (el.dataset.menuTarget && el.checked) {
+      document.querySelectorAll('.subtypeMenu').forEach(function (m) {
+         m.toggleAttribute('data-open', m.dataset.menu === el.dataset.menuTarget);
+      });
+   }
+
+   var prefix = el.dataset.notePrefix;
+   if (!prefix) return;
+
+   var anchors = noteAnchors(el.dataset.noteAnchor);
+
+   if (el.type === 'checkbox') {
+      upsertNoteLine(prefix, el.checked ? el.dataset.line : null, anchors);
+      return;
+   }
+
+   if (!el.checked) return; // radio: only the newly-selected one acts
+
+   // Mutually-exclusive group: clear any sibling prefix's line first, so a
+   // different-prefix button replaces the whole line rather than adding a second.
+   if (el.dataset.noteGroup) {
+      var groupBtns = document.querySelectorAll('input[data-note-group="' + el.dataset.noteGroup + '"]')
+      groupBtns.forEach(function (r) {
+         if (r.name !== el.name) {
+            r.checked = false;
+         }
+      })
+      groupPrefixes(el.dataset.noteGroup).forEach(function (p) {
+         if (p !== prefix) upsertNoteLine(p, null, anchors);
+      });
+   }
+
+   upsertNoteLine(prefix, el.dataset.line, anchors);
 });
 
-// Picking "Tech Support" drops an EMPTY Light Levels placeholder into the note;
-// a later paste finds it by prefix and fills in the values (same upsert path).
-// Only added when one isn't already present, so returning to the subtype won't
-// wipe values that were already pasted.
+// Map a friendly data-note-anchor name to the predicate list upsertNoteLine
+// expects. Default drops the line just under the status (Resolved) line.
+function noteAnchors(name) {
+   if (name === 'reason') return [isReasonLine, isStatusLine];
+   return [isStatusLine];
+}
+
+// Every distinct data-note-prefix currently in a note group. Queried live from
+// the DOM, so controls added later join the exclusive set automatically.
+function groupPrefixes(group) {
+   var seen = {};
+   var prefixes = [];
+   document.querySelectorAll('[data-note-group="' + group + '"][data-note-prefix]').forEach(function (c) {
+      var p = c.dataset.notePrefix;
+      if (p && !seen[p]) { seen[p] = true; prefixes.push(p); }
+   });
+   return prefixes;
+}
+
 var tsCaseBtn = document.getElementById('tsCase');
 tsCaseBtn.addEventListener('change', function () {
    if (!tsCaseBtn.checked) return;
@@ -204,7 +258,7 @@ function parseLightLevels(text) {
    var ftOnt = text.match(/ONT Rx(?: Power)?:?\s*(-?\d+(?:\.\d+)?)/i);
    if (ftOlt || ftOnt) return { olt: ftOlt && ftOlt[1], ont: ftOnt && ftOnt[1] };
 
-s
+   s
    /* // #1 Altiplano — Format: 
 RX signal Level (Measured at OLT) -15.8 dBm
 TX signal level (Measured at ONT)  5.6 dBm
