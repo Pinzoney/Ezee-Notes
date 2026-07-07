@@ -152,10 +152,7 @@ function upsertNoteLine(prefix, value, anchors) {
    genNote.value = lines.join('\n');
 }
 
-// --- Declarative note-writing controls ------------------------------------
-// Any control carrying data-note-prefix writes to the note; the button itself
-// declares its behaviour, so adding one is pure HTML — no new JS. Delegated off
-// document, so buttons added later (even generated at runtime) work too.
+// --- Declarative note-writing logic ------------------------------------
 //   data-note-prefix="Reason: "   the line's identity (upsert replaces by it)
 //   data-line="..."               the value written after the prefix
 //   data-note-anchor="reason"     optional: where a NEW line is inserted
@@ -166,15 +163,23 @@ function upsertNoteLine(prefix, value, anchors) {
 //                                 line (prefix and all), not just its value.
 // Radios replace their prefix's line on select; checkboxes add on check and
 // remove on uncheck.
+
 document.addEventListener('change', function (e) {
    var el = e.target;
 
    // Tab -> panel: open the menu whose data-menu matches the checked tab's
    // data-menu-target, and close the rest. One rule for every menu, present or
    // future; adding a menu is just matching attributes, no new CSS or JS.
-   if (el.dataset.menuTarget && el.checked) {
-      document.querySelectorAll('.subtypeMenu').forEach(function (m) {
+
+   if (el.name == 'btnT2Type' && el.dataset.menuTarget && el.checked) {
+      document.querySelectorAll('.t2TypeMenuArea').forEach(function (m) {
          m.toggleAttribute('data-open', m.dataset.menu === el.dataset.menuTarget);
+      });
+   }
+
+   if (el.dataset.menuTarget && el.checked) {
+      document.querySelectorAll('.subtypeMenu').forEach(function (s) {
+         s.toggleAttribute('data-open', s.dataset.menu === el.dataset.menuTarget);
       });
    }
 

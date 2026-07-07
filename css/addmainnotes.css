@@ -185,10 +185,12 @@ a.nav-link:hover {
    transition: background-color 0.1s ease-in, color 0.1s ease-in;
 }
 
-.caseNumField,
+#caseNum,
+#woNum,
 #btnRes,
 #npsSubtypeGroup,
-#traSubtypeGroup {
+#traSubtypeGroup,
+#disSubtypeGroup {
    display: none;
 }
 
@@ -200,10 +202,24 @@ a.nav-link:hover {
 
 /* Subtype menu styling */
 
+#traTypeMenu {
+   position: relative;
+   z-index: 0;
+}
+
 #npsSubtypeGroup,
-#traSubtypeGroup {
+#traSubtypeGroup,
+#disSubtypeGroup {
    position: relative;
    z-index: 2;
+}
+
+.t2TypeMenuArea {
+   position: relative;
+   z-index: 0;
+   display: grid;
+   grid-template-rows: 0fr;
+   transition: grid-template-rows 0.3s ease;
 }
 
 .subtypeMenuArea {
@@ -215,7 +231,8 @@ a.nav-link:hover {
    transition: grid-template-rows 0.3s ease;
 }
 
-.subtypeMenuArea-inner {
+.mainClipper-inner,
+.subtypeClipper-inner {
    overflow: hidden;
    min-height: 0;
 }
@@ -332,7 +349,15 @@ a.nav-link:hover {
 
 /* Logic for fields and submenus to be visible/invisible */
 
-.col-8:has(#npsCase:checked) .caseNumField {
+.col-8:has(#npsCase:checked):has(#npsSubtypeGroup input:checked) #npsSubMenuArea {
+   grid-template-rows: 1fr;
+}
+
+.col-8:has(#npsCase:checked) #npsSubtypeGroup {
+   display: inline-flex;
+}
+
+.col-8:has(#npsCase:checked) #caseNum {
    display: block;
 }
 
@@ -340,19 +365,27 @@ a.nav-link:hover {
    display: flex;
 }
 
-.col-8:has(#npsCase:checked) #npsSubtypeGroup {
-   display: inline-flex;
+.col-8:has(#trAudit:checked):has(#traSubtypeGroup input:checked) #trSubMenuArea {
+   grid-template-rows: 1fr;
 }
 
 .col-8:has(#trAudit:checked) #traSubtypeGroup {
    display: inline-flex;
 }
 
-.col-8:has(#npsCase:checked):has(#npsSubtypeGroup input:checked) #npsSubMenuArea {
+.col-8:has(#trAudit:checked) #woNum {
+   display: block;
+}
+
+.col-8:has(#disList:checked) #disSubtypeGroup {
+   display: inline-flex;
+}
+
+.col-8:has(#disList:checked):has(#disSubtypeGroup input:checked) #disSubMenuArea {
    grid-template-rows: 1fr;
 }
 
-.col-8:has(#trAudit:checked):has(#traSubtypeGroup input:checked) #trSubMenuArea {
+.t2TypeMenuArea[data-open] {
    grid-template-rows: 1fr;
 }
 
