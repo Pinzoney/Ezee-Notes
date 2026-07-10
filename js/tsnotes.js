@@ -82,6 +82,8 @@ t2TypeGroup.addEventListener('change', function (e) {
 
 //case# field live update
 
+var numFields = document.querySelectorAll('input[type=text][class=]')
+
 caseNumField.addEventListener('input', function () {
    var dataLine = document.getElementById('npsCase').dataset.line
    var lines = genNote.value.split('\n')
@@ -167,10 +169,6 @@ function upsertNoteLine(prefix, value, anchors) {
 document.addEventListener('change', function (e) {
    var el = e.target;
 
-   // Tab -> panel: open the menu whose data-menu matches the checked tab's
-   // data-menu-target, and close the rest. One rule for every menu, present or
-   // future; adding a menu is just matching attributes, no new CSS or JS.
-
    if (el.name == 'btnT2Type' && el.dataset.menuTarget && el.checked) {
       document.querySelectorAll('.t2TypeMenuArea').forEach(function (m) {
          m.toggleAttribute('data-open', m.dataset.menu === el.dataset.menuTarget);
@@ -193,10 +191,8 @@ document.addEventListener('change', function (e) {
       return;
    }
 
-   if (!el.checked) return; // radio: only the newly-selected one acts
+   if (!el.checked) return;
 
-   // Mutually-exclusive group: clear any sibling prefix's line first, so a
-   // different-prefix button replaces the whole line rather than adding a second.
    if (el.dataset.noteGroup) {
       var groupBtns = document.querySelectorAll('input[data-note-group="' + el.dataset.noteGroup + '"]')
       groupBtns.forEach(function (r) {

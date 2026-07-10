@@ -106,7 +106,7 @@ body {
    border: 1px black solid;
    border-right: 0;
    box-shadow: 3px 0 3px -2px rgba(0, 0, 0, 0.308);
-   z-index: 7;
+   z-index: 20;
 }
 
 .btnGenFunc:hover {
@@ -122,14 +122,18 @@ body {
    border: 1.5px #e05020;
    border-style: solid;
    background-color: white;
-   z-index: 8;
+   z-index: 15;
    margin-left: 6px;
    padding: 5;
    font-family: 'Roboto Condensed';
 }
 
+.btnSubtype-tab {
+   z-index: 20;
+}
+
 .btn-check:checked+.btnSubtype-tab {
-   border-bottom: 2px white solid;
+   border-bottom: 2px rgb(255, 255, 255) solid;
 }
 
 .btnSwitch-Res {
@@ -204,28 +208,27 @@ a.nav-link:hover {
 
 #traTypeMenu {
    position: relative;
-   z-index: 0;
+   z-index: 1;
 }
 
 #npsSubtypeGroup,
 #traSubtypeGroup,
 #disSubtypeGroup {
    position: relative;
-   z-index: 2;
+   z-index: 13;
 }
 
 .t2TypeMenuArea {
    position: relative;
-   z-index: 0;
+   z-index: 2;
    display: grid;
    grid-template-rows: 0fr;
    transition: grid-template-rows 0.3s ease;
 }
 
 .subtypeMenuArea {
-   margin-top: -1px;
    position: relative;
-   z-index: 1;
+   z-index: 10;
    display: grid;
    grid-template-rows: 0fr;
    transition: grid-template-rows 0.3s ease;
@@ -238,8 +241,10 @@ a.nav-link:hover {
 }
 
 .subtypeMenuArea-box {
+   position: relative;
    border: 1px #e05020 solid;
    border-radius: 0.25rem;
+   z-index: 9;
 }
 
 .subtypeMenu {
@@ -310,7 +315,7 @@ a.nav-link:hover {
    font-family: "bootstrap-icons";
    font-size: 1rem;
    pointer-events: none;
-   z-index: 5;
+   z-index: 15;
 }
 
 .input-group.paste-ok::after {
@@ -391,4 +396,8 @@ a.nav-link:hover {
 
 .subtypeMenu[data-open] {
    grid-template-rows: 1fr;
+}
+
+.subtypeMenuArea:has(.subtypeMenu[data-open]) {
+   margin-top: -1px;
 }
