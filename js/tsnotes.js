@@ -82,7 +82,7 @@ t2TypeGroup.addEventListener('change', function (e) {
 
 //case# field live update
 
-var numFields = document.querySelectorAll('input[type=text][class=]')
+/* var numFields = document.querySelectorAll('input[type=text][class=]') */
 
 caseNumField.addEventListener('input', function () {
    var dataLine = document.getElementById('npsCase').dataset.line
@@ -173,10 +173,12 @@ document.addEventListener('change', function (e) {
       document.querySelectorAll('.t2TypeMenuArea').forEach(function (m) {
          m.toggleAttribute('data-open', m.dataset.menu === el.dataset.menuTarget);
       });
+      return;
    }
 
    if (el.dataset.menuTarget && el.checked) {
-      document.querySelectorAll('.subtypeMenu').forEach(function (s) {
+      var scope = el.closest('.t2TypeMenuArea') || document;
+      scope.querySelectorAll('.subtypeMenu').forEach(function (s) {
          s.toggleAttribute('data-open', s.dataset.menu === el.dataset.menuTarget);
       });
    }
