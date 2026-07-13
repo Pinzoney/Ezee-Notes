@@ -73,7 +73,8 @@
                            <div class="d-flex col-4">
                               <div class="input-group">
                                  <div class="form-floating menuNumField">
-                                    <input type="text" class="form-control numField" placeholder="Case #" id="caseNum">
+                                    <input type="text" class="form-control numField" placeholder="Case #" id="caseNum"
+                                       data-note-prefix="Case #: ">
                                     <label for="caseNum" style="font-size: smaller; padding: 0.59rem 0.5rem;">Case
                                        #:</label>
                                  </div>
@@ -83,15 +84,15 @@
                            </div>
                            <div>
                               <div class="btn-group col-4 mt-3" role="group" id="npsSubtypeGroup">
-                                 <input type="radio" class="btn-check" name="btnSubtype" id="tsCase" data-line=""
-                                    data-menu-target="ts" autocomplete="off">
+                                 <input type="radio" class="btn-check" name="btnSubtype" id="tsCase"
+                                    data-line="Tech Support" data-menu-target="ts" autocomplete="off">
                                  <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="tsCase">Tech
                                     Support</label></input>
-                                 <input type="radio" class="btn-check" name="btnSubtype" id="csCase" data-line=""
-                                    data-menu-target="cs" autocomplete="off">
+                                 <input type="radio" class="btn-check" name="btnSubtype" id="csCase"
+                                    data-line="Cx Service" data-menu-target="cs" autocomplete="off">
                                  <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="csCase">Cx
                                     Service</label></input>
-                                 <input type="radio" class="btn-check" name="btnSubtype" id="fieldST" data-line=""
+                                 <input type="radio" class="btn-check" name="btnSubtype" id="fieldST" data-line="FST"
                                     data-menu-target="ft" autocomplete="off">
                                  <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab"
                                     for="fieldST">FST</label></input>
@@ -192,25 +193,25 @@
                                           <div class="subtypeMenu-content p-3">
                                              <div class="mb-2">
                                                 <input class="btn-check" name="fstSubtype" type="radio"
-                                                   id="fstRadioBtn1" data-line="" data-note-prefix=""
+                                                   id="fstRadioBtn1" data-line="Behaviour" data-note-prefix="Issue: "
                                                    data-note-group="subtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn1">TBD
-                                                   1</label></input>
+                                                <label class="btn btn-sm btnRadioType btnSubtype"
+                                                   for="fstRadioBtn1">Behaviour</label></input>
                                                 <input class="btn-check" name="fstSubtype" type="radio"
-                                                   id="fstRadioBtn2" data-line="" data-note-prefix=""
-                                                   data-note-group="subtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn2">TBD
-                                                   2</label></input>
+                                                   id="fstRadioBtn2" data-line="Installation quality/placement"
+                                                   data-note-prefix="Issue: " data-note-group="subtype">
+                                                <label class="btn btn-sm btnRadioType btnSubtype"
+                                                   for="fstRadioBtn2">Inst. Issues</label></input>
                                                 <input class="btn-check" name="fstSubtype" type="radio"
-                                                   id="fstRadioBtn3" data-line="" data-note-prefix=""
+                                                   id="fstRadioBtn3" data-line="Late Arrival" data-note-prefix="Issue: "
                                                    data-note-group="subtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn3">TBD
-                                                   3</label></input>
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn3">WO
+                                                   Issues</label></input>
                                                 <input class="btn-check" name="fstSubtype" type="radio"
-                                                   id="fstRadioBtn4" data-line="" data-note-prefix=""
-                                                   data-note-group="subtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="fstRadioBtn4">TBD
-                                                   4</label></input>
+                                                   id="fstRadioBtn4" data-line="WO Reescheduled with no notification"
+                                                   data-note-prefix="Issue: " data-note-group="subtype">
+                                                <label class="btn btn-sm btnRadioType btnSubtype"
+                                                   for="fstRadioBtn4">Unnoti. Reschedule</label></input>
                                              </div>
                                              <div class="input-group mb-2">
                                                 <span class="input-group-text lblNoWrap spanLIndiv"
@@ -232,7 +233,8 @@
                            <div class="d-flex col-4">
                               <div class="input-group">
                                  <div class="form-floating menuNumField">
-                                    <input type="text" class="form-control numField" placeholder="Case #" id="woNum">
+                                    <input type="text" class="form-control numField" placeholder="Case #" id="woNum"
+                                       data-note-prefix="WO #: ">
                                     <label for="woNum" style="font-size: smaller; padding: 0.59rem 0.5rem;">WO
                                        #:</label>
                                  </div>

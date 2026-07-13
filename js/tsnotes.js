@@ -82,9 +82,15 @@ t2TypeGroup.addEventListener('change', function (e) {
 
 //case# field live update
 
-var numFields = document.querySelectorAll('input[type=text][class=]')
+document.querySelectorAll('.numField').forEach(function (field) {
+   field.addEventListener('input', function () {
+      var prefix = field.dataset.notePrefix;
+      var value = field.value.trim() ? field.value : null;
+      upsertNoteLine(prefix, value, noteAnchors(field.dataset.noteAnchor))
+   });
+});
 
-caseNumField.addEventListener('input', function () {
+/* caseNumField.addEventListener('input', function () {
    var dataLine = document.getElementById('npsCase').dataset.line
    var lines = genNote.value.split('\n')
    var previousLines = [...t2TypeBtns].map(function (btn) { return btn.dataset.line })
@@ -93,7 +99,7 @@ caseNumField.addEventListener('input', function () {
    })
    filtered.splice(0, 0, '', 'Case #: ' + caseNumField.value)
    genNote.value = dataLine + '\n' + filtered.join('\n')
-})
+}) */
 
 btnRes.addEventListener('click', function () {
    setTimeout(function () {
@@ -176,7 +182,8 @@ document.addEventListener('change', function (e) {
    }
 
    if (el.dataset.menuTarget && el.checked) {
-      document.querySelectorAll('.subtypeMenu').forEach(function (s) {
+      var scope = el.closest('.t2TypeMenuArea') || document;
+      scope.querySelectorAll('.subtypeMenu').forEach(function (s) {
          s.toggleAttribute('data-open', s.dataset.menu === el.dataset.menuTarget);
       });
    }
@@ -210,8 +217,14 @@ document.addEventListener('change', function (e) {
 
 // Map a friendly data-note-anchor name to the predicate list upsertNoteLine
 // expects. Default drops the line just under the status (Resolved) line.
+
+function isTypeLine(line) {
+   return [...t2TypeBtns].some(function (btn) { return btn.dataset.line === line; });
+};
+
 function noteAnchors(name) {
    if (name === 'reason') return [isReasonLine, isStatusLine];
+   if (name === 'case') return [isTypeLine];
    return [isStatusLine];
 }
 
@@ -259,7 +272,7 @@ function parseLightLevels(text) {
    var ftOnt = text.match(/ONT Rx(?: Power)?:?\s*(-?\d+(?:\.\d+)?)/i);
    if (ftOlt || ftOnt) return { olt: ftOlt && ftOlt[1], ont: ftOnt && ftOnt[1] };
 
-   s
+
    /* // #1 Altiplano — Format: 
 RX signal Level (Measured at OLT) -15.8 dBm
 TX signal level (Measured at ONT)  5.6 dBm
