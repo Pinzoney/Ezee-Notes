@@ -179,6 +179,7 @@ document.addEventListener('change', function (e) {
       document.querySelectorAll('.t2TypeMenuArea').forEach(function (m) {
          m.toggleAttribute('data-open', m.dataset.menu === el.dataset.menuTarget);
       });
+      return;
    }
 
    if (el.dataset.menuTarget && el.checked) {
