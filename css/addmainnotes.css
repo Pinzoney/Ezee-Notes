@@ -198,7 +198,8 @@ a.nav-link:hover {
    display: none;
 }
 
-#caseNum {
+#caseNum,
+#woNum {
    font-size: smaller;
    min-height: 0;
    height: 40px !important;

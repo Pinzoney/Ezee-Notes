@@ -123,14 +123,14 @@
                                                    for="techRadioBtn3">Single
                                                    Device issue</label></input>
                                              </div>
-                                             <div class="col-6">
-                                                <div class="d-flex gap-2" style="align-items: center;">
+                                             <div class="col-8">
+                                                <div class="d-flex gap-2 lghtGroup" style="align-items: center;">
                                                    <i class="bi bi-question-circle" data-bs-toggle="popover"
                                                       data-bs-placement="bottom" data-boundary=".mainnotes"
                                                       data-hoverable="true" data-content-template="#popCarouselTemplate"
                                                       data-bs-custom-class="popWide">
                                                    </i>
-                                                   <button type="button" class="btnSwitch btnGenFunc gap-1"
+                                                   <button type="button" class="btnSwitch btnGenFunc btnPasteLght gap-1"
                                                       id="btnPasteOntLght">
                                                       <span class="genSpan" for="btnPasteOntLght">Modem LL</span>
                                                       <i class="bi bi-clipboard2-plus"></i>
@@ -142,14 +142,14 @@
                                                          for="oltRx">OLT</span>
                                                       <input type="text"
                                                          class="form-control form-control-sm txtGenFieldGrp" id="oltRx"
-                                                         placeholder="" style="z-index: 5;">
+                                                         placeholder="" style="z-index: 5;" data-ll-role="olt">
                                                    </div>
                                                    <div class="input-group input-group-sm">
                                                       <span class="input-group-text lblNoWrap spanLIndiv"
                                                          for="ontRx">ONT</span>
                                                       <input type="text"
                                                          class="form-control form-control-sm txtGenFieldGrp" id="ontRx"
-                                                         placeholder="">
+                                                         placeholder="" data-ll-role="ont">
                                                    </div>
                                                 </div>
                                              </div>
@@ -240,19 +240,19 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="btn-group col-4 mt-3" role="group" id="traSubtypeGroup">
+                           <div class="btn-group col-4 mt-3 subtypeGroup" role="group" id="traSubtypeGroup">
                               <input type="radio" class="btn-check" name="traSubtypeBtn" id="traSubtype1"
-                                 data-line="TRA Subtype 1" data-menu-target="tr1" autocomplete="off">
-                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="traSubtype1">TRA
-                                 1</label></input>
+                                 data-line="COS" data-note-prefix="Type: " data-menu-target="tr1" autocomplete="off">
+                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab"
+                                 for="traSubtype1">COS</label></input>
                               <input type="radio" class="btn-check" name="traSubtypeBtn" id="traSubtype2"
-                                 data-line="TRA Subtype 2" data-menu-target="tr2" autocomplete="off">
-                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="traSubtype2">TRA
-                                 2</label></input>
+                                 data-line="SRV" data-note-prefix="Type: " data-menu-target="tr2" autocomplete="off">
+                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab"
+                                 for="traSubtype2">SRV</label></input>
                               <input type="radio" class="btn-check" name="traSubtypeBtn" id="traSubtype3"
-                                 data-line="TRA Subtype 3" data-menu-target="tr3" autocomplete="off">
-                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="traSubtype3">TRA
-                                 3</label></input>
+                                 data-line="HOT" data-note-prefix="Type: " data-menu-target="tr3" autocomplete="off">
+                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab"
+                                 for="traSubtype3">HOT</label></input>
                            </div>
                            <div class="subtypeMenuArea" id="trSubMenuArea">
                               <div class="subtypeClipper-inner">
@@ -261,31 +261,31 @@
                                        <div class="subtypeMenu-inner">
                                           <div class="subtypeMenu-content p-3">
                                              <div class="d-flex mb-2 gap-1">
-                                                <input class="btn-check" name="trSubBtn" type="radio" id="trSubBtn1"
-                                                   data-line="TBD" data-note-prefix="Reason: "
+                                                <input class="btn-check" name="cosSubBtn" type="radio" id="trSubBtn1"
+                                                   data-line="Swap Equipment" data-note-prefix="Subtype: "
                                                    data-note-group="trsubtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn1">TBD
-                                                   1</label></input>
-                                                <input class="btn-check" name="trSubBtn" type="radio" id="trSubBtn2"
-                                                   data-line="TBD" data-note-prefix="Reason: "
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn1">Swap
+                                                   Equipment</label></input>
+                                                <input class="btn-check" name="cosSubBtn" type="radio" id="trSubBtn2"
+                                                   data-line="Add Equipment" data-note-prefix="Subtype: "
                                                    data-note-group="trsubtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn2">TBD
-                                                   2</label></input>
-                                                <input class="btn-check" name="trSubBtn" type="radio" id="trSubBtn3"
-                                                   data-line="TBD" data-note-prefix="Reason: "
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn2">Add
+                                                   Equipment</label></input>
+                                                <input class="btn-check" name="cosSubBtn" type="radio" id="trSubBtn3"
+                                                   data-line="Misc. Cx Assist" data-note-prefix="Subtype: "
                                                    data-note-group="trsubtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn3">TBD 3
-                                                </label></input>
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="trSubBtn3">Misc.
+                                                   Cx Assist</label></input>
                                              </div>
-                                             <div class="col-6">
-                                                <div class="d-flex gap-2" style="align-items: center;">
+                                             <div class="col-8">
+                                                <div class="d-flex gap-2 lghtGroup" style="align-items: center;">
                                                    <i class="bi bi-question-circle" data-bs-toggle="popover"
                                                       data-bs-placement="bottom" data-boundary=".mainnotes"
                                                       data-hoverable="true" data-content-template="#popCarouselTemplate"
                                                       data-bs-custom-class="popWide">
                                                    </i>
-                                                   <button type="button" class="btnSwitch btnGenFunc gap-1"
-                                                      id="btnTRPasteOntLght">
+                                                   <button type="button" class="btnSwitch btnGenFunc btnPasteLght gap-1"
+                                                      id="btnTR1PasteOntLght">
                                                       <span class="genSpan" for="btnTRPasteOntLght">Modem LL</span>
                                                       <i class="bi bi-clipboard2-plus"></i>
                                                       <i class="bi bi-caret-right"
@@ -296,14 +296,15 @@
                                                          for="trOltRx">OLT</span>
                                                       <input type="text"
                                                          class="form-control form-control-sm txtGenFieldGrp"
-                                                         id="trOltRx" placeholder="" style="z-index: 5;">
+                                                         id="trOltRx" placeholder="" style="z-index: 5;"
+                                                         data-ll-role="olt">
                                                    </div>
                                                    <div class="input-group input-group-sm">
                                                       <span class="input-group-text lblNoWrap spanLIndiv"
                                                          for="trOntRx">ONT</span>
                                                       <input type="text"
                                                          class="form-control form-control-sm txtGenFieldGrp"
-                                                         id="trOntRx" placeholder="">
+                                                         id="trOntRx" placeholder="" data-ll-role="ont">
                                                    </div>
                                                 </div>
                                              </div>
@@ -313,108 +314,61 @@
                                     <div class="subtypeMenu" id="trSub2" data-menu="tr2">
                                        <div class="subtypeMenu-inner">
                                           <div class="subtypeMenu-content p-3">
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="subtypeMenu" id="trSub3" data-menu="tr3">
-                                       <div class="subtypeMenu-inner">
-                                          <div class="subtypeMenu-content p-3">
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="t2TypeMenuArea" id="disTypeMenu" data-menu="disMain">
-                        <div class="mainClipper-inner">
-                           <div class="btn-group col-4 mt-3" role="group" id="disSubtypeGroup">
-                              <input type="radio" class="btn-check" name="disSubtypeBtn" id="disSubtype1"
-                                 data-line="Distress Subtype 1" data-menu-target="dis1" autocomplete="off">
-                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="disSubtype1">Dis
-                                 1</label></input>
-                              <input type="radio" class="btn-check" name="disSubtypeBtn" id="disSubtype2"
-                                 data-line="Distress Subtype 2" data-menu-target="dis2" autocomplete="off">
-                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="disSubtype2">Dis
-                                 2</label></input>
-                              <input type="radio" class="btn-check" name="disSubtypeBtn" id="disSubtype3"
-                                 data-line="Distress Subtype 3" data-menu-target="dis3" autocomplete="off">
-                              <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="disSubtype3">Dis
-                                 3</label></input>
-                           </div>
-
-                           <div class="subtypeMenuArea" id="disSubMenuArea">
-                              <div class="subtypeClipper-inner">
-                                 <div class="subtypeMenuArea-box">
-                                    <div class="subtypeMenu" id="disSub1" data-menu="dis1">
-                                       <div class="subtypeMenu-inner">
-                                          <div class="subtypeMenu-content p-3">
                                              <div class="d-flex mb-2 gap-1">
-                                                <input class="btn-check" name="disSubBtn" type="radio" id="disSubBtn1"
-                                                   data-line="TBD" data-note-prefix="Reason: "
-                                                   data-note-group="dissubtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype"
-                                                   for="disSubBtn1">Distress
-                                                   1</label></input>
-                                                <input class="btn-check" name="disSubBtn" type="radio" id="disSubBtn2"
-                                                   data-line="TBD" data-note-prefix="Reason: "
-                                                   data-note-group="dissubtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype"
-                                                   for="disSubBtn2">Distress
-                                                   1</label></input>
-                                                <input class="btn-check" name="disSubBtn" type="radio" id="disSubBtn3"
-                                                   data-line="TBD" data-note-prefix="Reason: "
-                                                   data-note-group="dissubtype">
-                                                <label class="btn btn-sm btnRadioType btnSubtype"
-                                                   for="disSubBtn3">Distress
-                                                   1</label></input>
+                                                <input class="btn-check" name="srvSubBtn" type="radio" id="tr2SubBtn1"
+                                                   data-line="Hard Down" data-note-prefix="Subtype: "
+                                                   data-note-group="trsubtype">
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="tr2SubBtn1">Hard
+                                                   Down</label></input>
+                                                <input class="btn-check" name="srvSubBtn" type="radio" id="tr2SubBtn2"
+                                                   data-line="Low Light" data-note-prefix="Subtype: "
+                                                   data-note-group="trsubtype">
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="tr2SubBtn2">Low
+                                                   Light</label></input>
+                                                <input class="btn-check" name="srvSubBtn" type="radio" id="tr2SubBtn3"
+                                                   data-line="Wi-Fi Issues/Intermittency" data-note-prefix="Subtype: "
+                                                   data-note-group="trsubtype">
+                                                <label class="btn btn-sm btnRadioType btnSubtype" for="tr2SubBtn3">Wi-Fi
+                                                   Issues/Intermittency</label></input>
                                              </div>
-
-                                             <div class="col-6">
-                                                <div class="d-flex gap-2" style="align-items: center;">
+                                             <div class="col-8">
+                                                <div class="d-flex gap-2 lghtGroup" style="align-items: center;">
                                                    <i class="bi bi-question-circle" data-bs-toggle="popover"
                                                       data-bs-placement="bottom" data-boundary=".mainnotes"
                                                       data-hoverable="true" data-content-template="#popCarouselTemplate"
                                                       data-bs-custom-class="popWide">
                                                    </i>
-                                                   <button type="button" class="btnSwitch btnGenFunc gap-1"
-                                                      id="btnDisPasteOntLght">
-                                                      <span class="genSpan" for="btnDisPasteOntLght">Modem LL</span>
+                                                   <button type="button" class="btnSwitch btnGenFunc btnPasteLght gap-1"
+                                                      id="btnTR2PasteOntLght">
+                                                      <span class="genSpan" for="btnTRPasteOntLght">Modem LL</span>
                                                       <i class="bi bi-clipboard2-plus"></i>
                                                       <i class="bi bi-caret-right"
                                                          style="margin-left: -0.5rem; margin-bottom: -0.14rem; font-size: small;"></i>
                                                    </button>
                                                    <div class="input-group input-group-sm">
                                                       <span class="input-group-text lblNoWrap spanLIndiv"
-                                                         for="disOltRx">OLT</span>
+                                                         for="trOltRx">OLT</span>
                                                       <input type="text"
                                                          class="form-control form-control-sm txtGenFieldGrp"
-                                                         id="disOltRx" placeholder="" style="z-index: 5;">
+                                                         id="tr2OltRx" placeholder="" style="z-index: 5;"
+                                                         data-ll-role="olt">
                                                    </div>
                                                    <div class="input-group input-group-sm">
                                                       <span class="input-group-text lblNoWrap spanLIndiv"
-                                                         for="disOntRx">ONT</span>
+                                                         for="trOntRx">ONT</span>
                                                       <input type="text"
                                                          class="form-control form-control-sm txtGenFieldGrp"
-                                                         id="disOntRx" placeholder="">
+                                                         id="t2OntRx" placeholder="" data-ll-role="ont">
                                                    </div>
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
                                     </div>
-                                    <div class="subtypeMenu" id="disSub2" data-menu="dis2">
-                                       <div class="subtypeMenu-inner">
-                                          <div class="subtypeMenu-content p-3">
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="subtypeMenu" id="disSub3" data-menu="dis3">
-                                       <div class="subtypeMenu-inner">
-                                          <div class="subtypeMenu-content p-3">
-                                          </div>
+                                 </div>
+                                 <div class="subtypeMenu" id="trSub3" data-menu="tr3">
+                                    <div class="subtypeMenu-inner">
+                                       <div class="subtypeMenu-content p-3">
                                        </div>
                                     </div>
                                  </div>
@@ -422,24 +376,116 @@
                            </div>
                         </div>
                      </div>
-
                   </div>
 
-                  <form>
-                     <div class="mt-4">
-                        <label for="inputIssue" class="form-label areaLabel col-2">Resolution</label>
-                        <div class="mb-3 align-items-center">
-                           <div class="w-50">
-                              <textarea type="text" class="form-control textArea" id="inputIssue"
-                                 placeholder="Type a short description of the issue." rows="16"></textarea>
+                  <div class="t2TypeMenuArea" id="disTypeMenu" data-menu="disMain">
+                     <div class="mainClipper-inner">
+                        <div class="btn-group col-4 mt-3" role="group" id="disSubtypeGroup">
+                           <input type="radio" class="btn-check" name="disSubtypeBtn" id="disSubtype1"
+                              data-line="Distress Subtype 1" data-menu-target="dis1" autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="disSubtype1">Dis
+                              1</label></input>
+                           <input type="radio" class="btn-check" name="disSubtypeBtn" id="disSubtype2"
+                              data-line="Distress Subtype 2" data-menu-target="dis2" autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="disSubtype2">Dis
+                              2</label></input>
+                           <input type="radio" class="btn-check" name="disSubtypeBtn" id="disSubtype3"
+                              data-line="Distress Subtype 3" data-menu-target="dis3" autocomplete="off">
+                           <label class="btn btn-sm btnRadioType btnSubtype btnSubtype-tab" for="disSubtype3">Dis
+                              3</label></input>
+                        </div>
+
+                        <div class="subtypeMenuArea" id="disSubMenuArea">
+                           <div class="subtypeClipper-inner">
+                              <div class="subtypeMenuArea-box">
+                                 <div class="subtypeMenu" id="disSub1" data-menu="dis1">
+                                    <div class="subtypeMenu-inner">
+                                       <div class="subtypeMenu-content p-3">
+                                          <div class="d-flex mb-2 gap-1">
+                                             <input class="btn-check" name="disSubBtn" type="radio" id="disSubBtn1"
+                                                data-line="TBD" data-note-prefix="Reason: "
+                                                data-note-group="dissubtype">
+                                             <label class="btn btn-sm btnRadioType btnSubtype" for="disSubBtn1">Distress
+                                                1</label></input>
+                                             <input class="btn-check" name="disSubBtn" type="radio" id="disSubBtn2"
+                                                data-line="TBD" data-note-prefix="Reason: "
+                                                data-note-group="dissubtype">
+                                             <label class="btn btn-sm btnRadioType btnSubtype" for="disSubBtn2">Distress
+                                                1</label></input>
+                                             <input class="btn-check" name="disSubBtn" type="radio" id="disSubBtn3"
+                                                data-line="TBD" data-note-prefix="Reason: "
+                                                data-note-group="dissubtype">
+                                             <label class="btn btn-sm btnRadioType btnSubtype" for="disSubBtn3">Distress
+                                                1</label></input>
+                                          </div>
+
+                                          <div class="col-8">
+                                             <div class="d-flex gap-2 lghtGroup" style="align-items: center;">
+                                                <i class="bi bi-question-circle" data-bs-toggle="popover"
+                                                   data-bs-placement="bottom" data-boundary=".mainnotes"
+                                                   data-hoverable="true" data-content-template="#popCarouselTemplate"
+                                                   data-bs-custom-class="popWide">
+                                                </i>
+                                                <button type="button" class="btnSwitch btnGenFunc btnPasteLght gap-1"
+                                                   id="btnDisPasteOntLght">
+                                                   <span class="genSpan" for="btnDisPasteOntLght">Modem LL</span>
+                                                   <i class="bi bi-clipboard2-plus"></i>
+                                                   <i class="bi bi-caret-right"
+                                                      style="margin-left: -0.5rem; margin-bottom: -0.14rem; font-size: small;"></i>
+                                                </button>
+                                                <div class="input-group input-group-sm">
+                                                   <span class="input-group-text lblNoWrap spanLIndiv"
+                                                      for="disOltRx">OLT</span>
+                                                   <input type="text"
+                                                      class="form-control form-control-sm txtGenFieldGrp" id="disOltRx"
+                                                      placeholder="" style="z-index: 5;" data-ll-role="olt">
+                                                </div>
+                                                <div class="input-group input-group-sm">
+                                                   <span class="input-group-text lblNoWrap spanLIndiv"
+                                                      for="disOntRx">ONT</span>
+                                                   <input type="text"
+                                                      class="form-control form-control-sm txtGenFieldGrp" id="disOntRx"
+                                                      placeholder="" data-ll-role="ont">
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="subtypeMenu" id="disSub2" data-menu="dis2">
+                                    <div class="subtypeMenu-inner">
+                                       <div class="subtypeMenu-content p-3">
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="subtypeMenu" id="disSub3" data-menu="dis3">
+                                    <div class="subtypeMenu-inner">
+                                       <div class="subtypeMenu-content p-3">
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </div>
-                     <div class="mt-3">
-                        <button type="button" class="btn btnMain1" id="genBut"
-                           style="margin-bottom: 10px;">Generate</button>
-                     </div>
-                  </form>
+                  </div>
+                  <div>
+                     <form>
+                        <div class="mt-4">
+                           <label for="inputIssue" class="form-label areaLabel col-2">Resolution</label>
+                           <div class="mb-3 align-items-center">
+                              <div class="w-50">
+                                 <textarea type="text" class="form-control textArea" id="inputIssue"
+                                    placeholder="Type a short description of the issue." rows="16"></textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="mt-3">
+                           <button type="button" class="btn btnMain1" id="genBut"
+                              style="margin-bottom: 10px;">Generate</button>
+                        </div>
+                     </form>
+                  </div>
                </div>
                <div class="col-4 d-flex flex-column">
                   <textarea class="flex-grow-1" id="generatedNote" style="font-size: 15px">
