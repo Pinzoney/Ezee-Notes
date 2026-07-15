@@ -46,11 +46,21 @@ mention it afterward. Do NOT gate it behind a "want me to write this up?" offer 
 that's the friction I asked to remove. This is a **docs-only** exception; the
 explain-before-editing default still applies to source files.
 
+Docs are organized into `docs/css/` (styling/layout), `docs/js/` (functions/logic), and
+`docs/html/` (markup structure), with an index at [`docs/README.md`](docs/README.md). Put
+new notes in the best-fit folder and add a one-line entry to the index.
+
 ### 4. Offer a study doc for non-trivial techniques
 When implementing something conceptually meaty (a CSS layout trick, a tricky selector,
 a reusable pattern, a non-obvious bug fix), write a short markdown note under `docs/`
 covering how/why/best-use-case — structured like the existing docs (goal, technique,
 why-it-works, a gotcha, a rule-of-thumb). Skip this for trivial one-liners.
+
+### 5. New JS follows the standard file order
+When I ask you to create or add a function in a JS file, place it in the correct section
+of the standard role-based layout (constants → DOM refs → pure helpers → core logic →
+event listeners → init) and match the surrounding style — don't just append it at the
+bottom. See [`docs/js/js-file-organization.md`](docs/js/js-file-organization.md).
 
 ## Key architecture notes
 
@@ -59,6 +69,6 @@ It uses a `grid-template-rows: 0fr → 1fr` accordion collapse driven by a scala
 data-attribute JS bridge (`data-menu-target` on controls, `data-menu` on targets,
 `[data-open]` reveals). Full write-up:
 
-- [`docs/structural-menu-reveal.md`](docs/structural-menu-reveal.md) — the menu-reveal
+- [`docs/js/structural-menu-reveal.md`](docs/js/structural-menu-reveal.md) — the menu-reveal
   architecture, the data-attribute bridge, the type/subtype accordion, and the
   "adding a whole new type" recipe.

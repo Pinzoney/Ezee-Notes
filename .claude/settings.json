@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Write(docs/**)",
+      "Edit(docs/**)"
+    ]
+  }
+}

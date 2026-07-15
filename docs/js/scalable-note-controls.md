@@ -135,7 +135,7 @@ source of truth, queried on demand**, never a list you have to keep in sync.
 ## How the ideas combine with `upsertNoteLine`
 
 Nothing here re-implements note logic. The engine just routes to the existing
-[`upsertNoteLine`](popover-positioning.md) helper and the `isStatusLine` /
+[`upsertNoteLine`](note-line-anchors.md) helper and the `isStatusLine` /
 `isReasonLine` predicates:
 
 | Control type | On check | On uncheck |

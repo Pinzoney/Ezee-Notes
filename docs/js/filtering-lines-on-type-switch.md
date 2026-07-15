@@ -1,5 +1,10 @@
 # Filtering the Note When Switching Types — Let the DOM Own the List
 
+> **Status: IMPLEMENTED.** Option A below is live in the `t2TypeGroup` change handler
+> (`js/tsnotes.js`) — `managedPrefixes()` + `startsWithAny()` + the `!startsWithAny(...)`
+> filter clause, with the new type's header prepended once at the end. This note is kept as
+> the *why* behind that code.
+
 When you switch T2 type (NPS ⇄ TR Audit ⇄ Distress), the previous type's fields
 (`Case #:`, `Reason:`, `WO #:`, `Type:`, `Subtype:` …) should drop out of `genNote`,
 while the universal lines (`Light Levels`, `Resolution`) stay. This note is the plan for

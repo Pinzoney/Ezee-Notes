@@ -6,6 +6,7 @@ var REASON_PREFIX = 'Reason: ';
 var LL_PREFIX = 'Light Levels (OLT/ONT): ';
 var TR_TYPE_PREFIX = 'Type: ';
 var TR_SUBTYPE_PREFIX = 'Subtype: ';
+var CASENUM_PREFIX = 'Case #: '
 var NUM_PREFIX = 'WO #: ';
 
 // ============================================================
@@ -71,6 +72,21 @@ function groupPrefixes(group) {
       if (p && !seen[p]) { seen[p] = true; prefixes.push(p); }
    });
    return prefixes;
+}
+
+//every distinc prefix in the app, for general "template" filtering
+function managedPrefixes() {
+   var seen = {};
+   var prefixes = [];
+   document.querySelectorAll('[data-note-prefix]').forEach(function (c) {
+      var p = c.dataset.notePrefix;
+      if (p && !seen[p]) { seen[p] = true; prefixes.push(p); }
+   });
+   return prefixes
+}
+
+function startsWithAny(line, prefixes) {
+   return prefixes.some(function (p) { return line.indexOf(p) === 0; })
 }
 
 // ---- Light levels ----
@@ -218,15 +234,24 @@ t2TypeGroup.addEventListener('change', function (e) {
 
    var lines = genNote.value.split('\n');
    var previousLines = [...t2TypeBtns].map(function (btn) { return btn.dataset.line })
+   var mngdPrefixes = managedPrefixes();
    var filtered = stripCaseLine(lines).filter(function (line) {
-      return !previousLines.includes(line) && line !== 'Resolved' && line !== 'Follow-up Needed'
+      return !previousLines.includes(line)
+         && !isStatusLine(line)
+         && !startsWithAny(line, mngdPrefixes);
    }).map(function (line) {
       return isLightLevelLine(line) ? LL_PREFIX : line   // keep the LL line, wipe its value
    })
 
    if (e.target.id === 'npsCase') {
       var statusLine = btnRes.classList.contains('active') ? 'Follow-up Needed' : 'Resolved'
-      filtered.splice(0, 0, '', 'Case #: ' + caseNumField.value, statusLine)
+      filtered.splice(0, 0,
+         '',
+         CASENUM_PREFIX + caseNumField.value,
+         statusLine,
+         '',
+         REASON_PREFIX,
+      )
    }
 
    if (e.target.id === 'trAudit') {
@@ -240,6 +265,10 @@ t2TypeGroup.addEventListener('change', function (e) {
          TR_SUBTYPE_PREFIX + (subBtnChkd ? subBtnChkd.dataset.line : '')
       )
    }
+
+   filtered = filtered.filter(function (line, i, arr) {
+      return line !== '' || arr[i - 1] !== '';
+   })
 
    genNote.value = e.target.dataset.line + '\n' + filtered.join('\n')
 });
