@@ -8,6 +8,7 @@ var TR_TYPE_PREFIX = 'Type: ';
 var TR_SUBTYPE_PREFIX = 'Subtype: ';
 var CASENUM_PREFIX = 'Case #: '
 var NUM_PREFIX = 'WO #: ';
+var RES_PREFIX = 'Resolution: ';
 
 // ============================================================
 // DOM references & module state
@@ -21,6 +22,7 @@ var caseNumField = document.getElementById('caseNum')
 var woNumField = document.getElementById('woNum');
 var checkboxes = document.querySelectorAll("input[type=checkbox][name=normSteps]")
 var stepsTextArea = document.getElementById('tsSteps')
+var resTxtArea = document.getElementById('inputIssue');
 var butClear = document.getElementById('clrCheck');
 var copyOutNote = document.getElementById('copyNote');
 var genNote = document.getElementById('generatedNote');
@@ -49,6 +51,7 @@ function isLightLevelLine(line) { return line.indexOf(LL_PREFIX) === 0; }
 function isTrTypeLine(line) { return line.indexOf(TR_TYPE_PREFIX) === 0; }
 function isTrSubtypeLine(line) { return line.indexOf(TR_SUBTYPE_PREFIX) === 0; }
 function isNumLine(line) { return line.indexOf(NUM_PREFIX) === 0; }
+function isResLine(line) { return line.indexOf(RES_PREFIX) === 0; }
 
 function isTypeLine(line) {
    return [...t2TypeBtns].some(function (btn) { return btn.dataset.line === line; });
@@ -238,9 +241,10 @@ t2TypeGroup.addEventListener('change', function (e) {
    var filtered = stripCaseLine(lines).filter(function (line) {
       return !previousLines.includes(line)
          && !isStatusLine(line)
-         && !startsWithAny(line, mngdPrefixes);
+         && (isResLine(line) || !startsWithAny(line, mngdPrefixes));
    }).map(function (line) {
       return isLightLevelLine(line) ? LL_PREFIX : line   // keep the LL line, wipe its value
+      return isResLine(line) ? RES_PREFIX : line;
    })
 
    if (e.target.id === 'npsCase') {
@@ -262,7 +266,7 @@ t2TypeGroup.addEventListener('change', function (e) {
          NUM_PREFIX + woNumField.value,
          '',
          TR_TYPE_PREFIX + (subTypeChkd ? subTypeChkd.dataset.line : ''),
-         TR_SUBTYPE_PREFIX + (subBtnChkd ? subBtnChkd.dataset.line : '')
+         TR_SUBTYPE_PREFIX + (subBtnChkd ? subBtnChkd.dataset.line : ''),
       )
    }
 
@@ -278,10 +282,18 @@ t2TypeGroup.addEventListener('change', function (e) {
 document.querySelectorAll('.numField').forEach(function (field) {
    field.addEventListener('input', function () {
       var prefix = field.dataset.notePrefix;
-      var value = field.value.trim() ? field.value : null;
+      var value = field.value.trim() ? field.value : '';
       upsertNoteLine(prefix, value, noteAnchors(field.dataset.noteAnchor))
    });
 });
+
+document.querySelectorAll('.inpTxtArea').forEach(function (field) {
+   field.addEventListener('input', function () {
+      var prefix = field.dataset.notePrefix;
+      var value = field.value.trim() ? field.value : '';
+      upsertNoteLine(prefix, value, noteAnchors(field.dataset.noteAnchor))
+   })
+})
 
 btnRes.addEventListener('click', function () {
    setTimeout(function () {
@@ -397,6 +409,11 @@ document.querySelectorAll('.btnPasteLght').forEach(function (btn) {
             showPasteToast('Paste failed');
          });
    })
+})
+
+butClear.addEventListener('click', function (b) {
+   var actType = document.querySelector('#t2TypeGroup input:checked');
+
 })
 
 // Copy Button logic
